@@ -45,3 +45,18 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [x] Customizable Circles
 - [x] Port over Polygon functionality
 - [x] Customizable Polygons
+
+### Elements to Create
+
+- [ ] Arc?
+- [ ] Bisector?
+- [ ] Circumcircle and Circumcenter?
+- [ ] Midpoint
+- [ ] Center of Polygon (whatever that's called)
+- [ ] Function graph/curve
+- [ ] Parabola
+- [ ] Perpendicular
+- [ ] Reflection across line
+- [ ] Regular Polygon
+- [ ] Sector
+- [ ] Glider point to curve or object? That seems hard...

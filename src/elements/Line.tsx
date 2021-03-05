@@ -21,14 +21,15 @@ export type LineConfiguration = Partial<React.SVGProps<SVGLineElement>>;
 
 type LineDisplayProps = {
   line: Line;
+  index: number;
 };
-export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
+export const LineDisplay: React.FC<LineDisplayProps> = ({ line, index }) => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
   const [xi] = useAtom(line.start.x);
   const [yi] = useAtom(line.start.y);
   const [xf] = useAtom(line.end.x);
   const [yf] = useAtom(line.end.y);
-  const id = "foobar";
+  const id = `line-${index}`;
 
   const coords = React.useMemo<
     undefined | [number, number, number, number]

@@ -119,7 +119,7 @@ export const GeometryBoard: React.FC<{
             } else if (el instanceof LineSegment) {
               return <LineSegmentDisplay lineSegment={el} key={i} />;
             } else if (el instanceof Line) {
-              return <LineDisplay line={el} key={i} />;
+              return <LineDisplay line={el} key={i} index={i} />;
             } else if (el instanceof Circle) {
               return <CircleDisplay circle={el} key={i} />;
             } else if (el instanceof Polygon) {
