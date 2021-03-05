@@ -13,9 +13,10 @@ const HomePage: React.FC = () => {
             const B = builder.point(4, 4);
             const O = builder.point(0, 0);
 
-            builder.line(A, B);
-            builder.lineSegment(O, A);
-            builder.lineSegment(O, B);
+            // builder.line(A, B);
+            // builder.lineSegment(O, A);
+            // builder.lineSegment(O, B);
+            builder.polygon([A, B, O]);
             builder.circle(A, B);
           }}
         </GeometryBoard>

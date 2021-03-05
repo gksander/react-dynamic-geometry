@@ -42,5 +42,5 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [ ] Customizable Line Segments
 - [ ] Customizable Lines
 - [ ] Customizable Circles
-- [ ] Port over Polygon functionality
+- [x] Port over Polygon functionality
 - [ ] Customizable Polygons

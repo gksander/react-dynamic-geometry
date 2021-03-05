@@ -6,6 +6,7 @@ import { Axes, AxesDisplay } from "./elements/Axes";
 import { LineSegment, LineSegmentDisplay } from "./elements/LineSegment";
 import { Line, LineDisplay } from "./elements/Line";
 import { Circle, CircleDisplay, CircleRadius } from "./elements/Circle";
+import { Polygon, PolygonDisplay } from "./elements/Polygon";
 
 /**
  * API for using board
@@ -17,16 +18,14 @@ export const GeometryBoard: React.FC<{
   config: { xMin = -10, xMax = 10, yMin = -10, yMax = 10 } = {},
   children,
 }) => {
-  const [elements, setElements] = React.useState<
-    (Axes | Point | LineSegment | Line | Circle)[]
-  >([]);
+  const [elements, setElements] = React.useState<BoardElement[]>([]);
   const svgRef = React.useRef<SVGSVGElement>(null);
 
   /**
    * Building board based on generating fn
    */
   React.useEffect(() => {
-    const newElements: (Axes | Point | LineSegment | Line | Circle)[] = [];
+    const newElements: BoardElement[] = [];
     const addElement: <T>(el: T) => T = (el) => {
       newElements.push(el);
       return el;
@@ -40,8 +39,9 @@ export const GeometryBoard: React.FC<{
     const line = (start: Point, end: Point) => addElement(new Line(start, end));
     const circle = (center: Point, radius: CircleRadius) =>
       addElement(new Circle(center, radius));
+    const polygon = (vertices: Point[]) => addElement(new Polygon(vertices));
 
-    children({ point, axes, lineSegment, line, circle });
+    children({ point, axes, lineSegment, line, circle, polygon });
 
     setElements(
       newElements.sort((a, b) => {
@@ -98,6 +98,8 @@ export const GeometryBoard: React.FC<{
               return <LineDisplay line={el} key={i} />;
             } else if (el instanceof Circle) {
               return <CircleDisplay circle={el} key={i} />;
+            } else if (el instanceof Polygon) {
+              return <PolygonDisplay polygon={el} key={i} />;
             }
           })}
         </svg>
@@ -108,12 +110,15 @@ export const GeometryBoard: React.FC<{
 
 const SIZE = 50;
 
+type BoardElement = Axes | Point | LineSegment | Line | Circle | Polygon;
+
 type BoardGenerator = (helpers: {
   axes: () => Axes;
   point: (x: number | NumberAtom, y: number | NumberAtom) => Point;
   lineSegment: (start: Point, end: Point) => LineSegment;
   line: (start: Point, end: Point) => Line;
   circle: (center: Point, radius: CircleRadius) => Circle;
+  polygon: (vertices: Point[]) => Polygon;
 }) => void;
 
 type BoardConfig = {
