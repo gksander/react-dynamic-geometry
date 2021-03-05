@@ -3,8 +3,12 @@ import { Point, PointConfiguration, PointDisplay } from "./elements/Point";
 import { CoordinateTransformer, NumberAtom } from "./helper-types";
 import { Provider } from "jotai";
 import { Axes, AxesDisplay } from "./elements/Axes";
-import { LineSegment, LineSegmentDisplay } from "./elements/LineSegment";
-import { Line, LineDisplay } from "./elements/Line";
+import {
+  LineSegment,
+  LineSegmentConfiguration,
+  LineSegmentDisplay,
+} from "./elements/LineSegment";
+import { Line, LineConfiguration, LineDisplay } from "./elements/Line";
 import {
   Circle,
   CircleConfiguration,
@@ -46,9 +50,13 @@ export const GeometryBoard: React.FC<{
       y: number | NumberAtom,
       cfg?: PointConfiguration,
     ) => addElement(new Point(x, y, cfg));
-    const lineSegment = (start: Point, end: Point) =>
-      addElement(new LineSegment(start, end));
-    const line = (start: Point, end: Point) => addElement(new Line(start, end));
+    const lineSegment = (
+      start: Point,
+      end: Point,
+      cfg?: LineSegmentConfiguration,
+    ) => addElement(new LineSegment(start, end, cfg));
+    const line = (start: Point, end: Point, cfg?: LineConfiguration) =>
+      addElement(new Line(start, end, cfg));
     const circle = (
       center: Point,
       radius: CircleRadius,
@@ -135,8 +143,12 @@ type BoardGenerator = (helpers: {
     y: number | NumberAtom,
     cfg?: PointConfiguration,
   ) => Point;
-  lineSegment: (start: Point, end: Point) => LineSegment;
-  line: (start: Point, end: Point) => Line;
+  lineSegment: (
+    start: Point,
+    end: Point,
+    cfg?: LineSegmentConfiguration,
+  ) => LineSegment;
+  line: (start: Point, end: Point, cfg?: LineConfiguration) => Line;
   circle: (
     center: Point,
     radius: CircleRadius,

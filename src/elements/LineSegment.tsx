@@ -9,12 +9,16 @@ import { useAtom } from "jotai";
 export class LineSegment {
   start: Point;
   end: Point;
+  cfg: LineSegmentConfiguration;
 
-  constructor(start: Point, end: Point) {
+  constructor(start: Point, end: Point, cfg: LineSegmentConfiguration = {}) {
     this.start = start;
     this.end = end;
+    this.cfg = cfg;
   }
 }
+
+export type LineSegmentConfiguration = Partial<React.SVGProps<SVGLineElement>>;
 
 /**
  * Display
@@ -33,12 +37,13 @@ export const LineSegmentDisplay: React.FC<LineSegmentDisplayProps> = ({
 
   return (
     <line
+      strokeWidth={1}
+      stroke="black"
+      {...lineSegment.cfg}
       x1={transformX(xi)}
       y1={transformY(yi)}
       x2={transformX(xf)}
       y2={transformY(yf)}
-      strokeWidth={1}
-      stroke="blue"
     />
   );
 };

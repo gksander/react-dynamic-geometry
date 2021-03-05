@@ -8,12 +8,16 @@ import { IPoint } from "../helper-types";
 export class Line {
   start: Point;
   end: Point;
+  cfg: LineConfiguration;
 
-  constructor(start: Point, end: Point) {
+  constructor(start: Point, end: Point, cfg: LineConfiguration = {}) {
     this.start = start;
     this.end = end;
+    this.cfg = cfg;
   }
 }
+
+export type LineConfiguration = Partial<React.SVGProps<SVGLineElement>>;
 
 type LineDisplayProps = {
   line: Line;
@@ -119,14 +123,15 @@ export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
 
   return (
     <React.Fragment>
-      <ArrowHeadMarkerDefs id={id} color="black" />
+      <ArrowHeadMarkerDefs id={id} color={line.cfg?.stroke || "black"} />
       <line
+        strokeWidth={1}
+        stroke="black"
+        {...line.cfg}
         x1={transformX(x1)}
         y1={transformY(y1)}
         x2={transformX(x2)}
         y2={transformY(y2)}
-        strokeWidth={1}
-        stroke="black"
         markerStart={`url(#arrowStart-${id})`}
         markerEnd={`url(#arrowEnd-${id})`}
       />

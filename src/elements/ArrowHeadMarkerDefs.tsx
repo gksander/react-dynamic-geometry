@@ -18,7 +18,7 @@ export const ArrowHeadMarkerDefs: React.FC<ArrowHeadMarkerDefsProps> = ({
         markerHeight={ARROW_HEAD_SIZE * 2}
         refX={ARROW_HEAD_SIZE}
         refY={ARROW_HEAD_SIZE}
-        markerUnits="userSpaceOnUse"
+        markerUnits="strokeWidth"
       >
         <path
           d={`M0,0 V${
@@ -34,7 +34,7 @@ export const ArrowHeadMarkerDefs: React.FC<ArrowHeadMarkerDefsProps> = ({
         markerHeight={ARROW_HEAD_SIZE * 2}
         refX={0}
         refY={ARROW_HEAD_SIZE}
-        markerUnits="userSpaceOnUse"
+        markerUnits="strokeWidth"
       >
         <path
           d={`M${ARROW_HEAD_SIZE},0 V${

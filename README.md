@@ -36,11 +36,12 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 
 ## TODO:
 
+- [ ] Cleanup/Abstractions to make registering new elements easier
 - [ ] Customizable axes
 - [x] Point labels
 - [x] Customizable Points
-- [ ] Customizable Line Segments
-- [ ] Customizable Lines
+- [x] Customizable Line Segments
+- [x] Customizable Lines
 - [x] Customizable Circles
 - [x] Port over Polygon functionality
 - [x] Customizable Polygons
