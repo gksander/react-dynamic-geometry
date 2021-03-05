@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import { GeometryBoard } from "../src/GeometryBoard";
+import { GeometryBoard } from "../src";
 
 const HomePage: React.FC = () => {
   return (

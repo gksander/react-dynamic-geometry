@@ -34,3 +34,13 @@ This project is still in the phase of "just playing around". I'm having fun buil
 
 Does this thing interest you? Hit me up! I want to hear your ideas.
 
+## TODO:
+
+- [ ] Customizable axes
+- [ ] Point labels
+- [ ] Customizable Points
+- [ ] Customizable Line Segments
+- [ ] Customizable Lines
+- [ ] Customizable Circles
+- [ ] Port over Polygon functionality
+- [ ] Customizable Polygons
