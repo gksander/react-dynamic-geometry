@@ -2,6 +2,28 @@
 
 A dynamic geometry library built on top of [React.js](https://reactjs.org/) and [Jotai](https://github.com/pmndrs/jotai). Easily create geometry "boards" with dynamic elements.
 
+## Sample
+
+The following code:
+
+```jsx
+<GeometryBoard>
+  {(builder) => {
+  	builder.axes();
+  	const A = builder.point(-3, 3);
+  	const B = builder.point(4, 4);
+  	const O = builder.point(0, 0);
+
+  	builder.line(A, B);
+  	builder.lineSegment(O, A);
+  	builder.lineSegment(O, B);
+  	builder.circle(A, B);
+  }}
+</GeometryBoard>
+```
+
+Generates the following dynamic geometry board.
+
 ![Sample of dynamic geometry board](./docs/img/rdg.gif)
 
 ## WARNING

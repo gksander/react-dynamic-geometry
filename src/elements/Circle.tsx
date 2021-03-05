@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Point } from "./Point";
-import { useBoardContext } from "../useBoard";
+import { useBoardContext } from "../GeometryBoard";
 import { atom, useAtom } from "jotai";
 import { distanceBetweenPoints } from "../utils/distanceBetweenPoints";
 import { NumberAtom } from "../helper-types";
@@ -42,7 +42,7 @@ type CircleDisplayProps = {
 };
 
 export const CircleDisplay: React.FC<CircleDisplayProps> = ({ circle }) => {
-  const { transformX, transformY } = useBoardContext();
+  const { transformX, transformY, xMin } = useBoardContext();
   const [x] = useAtom(circle.center.x);
   const [y] = useAtom(circle.center.y);
   const [radius] = useAtom(circle.radius);

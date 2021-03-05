@@ -1,1 +1,1 @@
-export { useBoard } from "./useBoard";
+export { GeometryBoard } from "./GeometryBoard";

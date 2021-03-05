@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Point } from "./Point";
-import { useBoardContext } from "../useBoard";
+import { useBoardContext } from "../GeometryBoard";
 import { useAtom } from "jotai";
 
 /**

@@ -10,16 +10,17 @@ import { Circle, CircleDisplay, CircleRadius } from "./elements/Circle";
 /**
  * API for using board
  */
-export const useBoard = (
-  fn: BoardGenerator,
-  { xMin = -10, xMax = 10, yMin = -10, yMax = 10 }: BoardConfig,
-) => {
+export const GeometryBoard: React.FC<{
+  children: BoardGenerator;
+  config?: BoardConfig;
+}> = ({
+  config: { xMin = -10, xMax = 10, yMin = -10, yMax = 10 } = {},
+  children,
+}) => {
   const [elements, setElements] = React.useState<
     (Axes | Point | LineSegment | Line | Circle)[]
   >([]);
   const svgRef = React.useRef<SVGSVGElement>(null);
-
-  // Transformers, mapping Euclid -> SVG coords
 
   /**
    * Building board based on generating fn
@@ -40,7 +41,7 @@ export const useBoard = (
     const circle = (center: Point, radius: CircleRadius) =>
       addElement(new Circle(center, radius));
 
-    fn({ point, axes, lineSegment, line, circle });
+    children({ point, axes, lineSegment, line, circle });
 
     setElements(
       newElements.sort((a, b) => {
@@ -53,7 +54,7 @@ export const useBoard = (
         return 0;
       }),
     );
-  }, [fn]);
+  }, []);
 
   /**
    * Provide some values so components can do _maths_

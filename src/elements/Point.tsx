@@ -1,6 +1,6 @@
 import * as React from "react";
 import { atom, useAtom, WritableAtom } from "jotai";
-import { useBoardContext } from "../useBoard";
+import { useBoardContext } from "../GeometryBoard";
 import { IPoint, NumberAtom } from "../helper-types";
 
 /**

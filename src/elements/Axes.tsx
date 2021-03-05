@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useBoardContext } from "../useBoard";
+import { useBoardContext } from "../GeometryBoard";
 import { ArrowHeadMarkerDefs } from "./ArrowHeadMarkerDefs";
 
 export class Axes {}
@@ -7,6 +7,7 @@ export class Axes {}
 type AxesDisplayProps = {};
 export const AxesDisplay: React.FC<AxesDisplayProps> = () => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
+  const tt = useBoardContext();
   const stroke = "gray"; // TODO: Should be configurable
   const id = "axes"; // TODO: Should not be hardcoded?
 

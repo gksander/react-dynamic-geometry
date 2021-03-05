@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Point } from "./Point";
 import { useAtom } from "jotai";
-import { useBoardContext } from "../useBoard";
+import { useBoardContext } from "../GeometryBoard";
 import { ArrowHeadMarkerDefs } from "./ArrowHeadMarkerDefs";
 import { IPoint } from "../helper-types";
 
