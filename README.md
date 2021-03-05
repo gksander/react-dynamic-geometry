@@ -37,8 +37,8 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 ## TODO:
 
 - [ ] Customizable axes
-- [ ] Point labels
-- [ ] Customizable Points
+- [x] Point labels
+- [x] Customizable Points
 - [ ] Customizable Line Segments
 - [ ] Customizable Lines
 - [ ] Customizable Circles

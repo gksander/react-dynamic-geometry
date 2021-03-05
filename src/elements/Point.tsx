@@ -2,6 +2,7 @@ import * as React from "react";
 import { atom, useAtom, WritableAtom } from "jotai";
 import { useBoardContext } from "../GeometryBoard";
 import { IPoint, NumberAtom } from "../helper-types";
+import { round } from "../utils/mathFns";
 
 /**
  * Point class
@@ -10,8 +11,13 @@ export class Point {
   x: NumberAtom;
   y: NumberAtom;
   coordsAtom: WritableAtom<IPoint, (prev: IPoint) => IPoint>;
+  cfg: PointConfiguration;
 
-  constructor(x: number | NumberAtom, y: number | NumberAtom) {
+  constructor(
+    x: number | NumberAtom,
+    y: number | NumberAtom,
+    cfg: PointConfiguration = {},
+  ) {
     this.x =
       typeof x === "number"
         ? atom(x)
@@ -35,8 +41,18 @@ export class Point {
         set(this.y, newCoords.y);
       },
     );
+
+    this.cfg = cfg;
   }
 }
+
+export type PointConfiguration = {
+  size?: number; // Radius in svg units
+  color?: string;
+  label?: string;
+  hideLabel?: boolean;
+  hidden?: boolean;
+};
 
 /**
  * Point display
@@ -99,15 +115,32 @@ export const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
     [transformX, transformY, untransformX, untransformY],
   );
 
+  const { size = 1.5, color = "blue", label, hideLabel } = point.cfg;
+  const cx = transformX(x);
+  const cy = transformY(y);
+
   return (
     <React.Fragment>
       <circle
-        cx={transformX(x)}
-        cy={transformY(y)}
-        r={2}
-        fill="red"
+        cx={cx}
+        cy={cy}
+        r={size}
+        fill={color}
+        fillOpacity={0.9}
+        stroke={color}
+        strokeWidth={1}
         onPointerDown={handlePointerDown}
       />
+      {!hideLabel && (
+        <text x={cx + 2} y={cy - 2} fontSize={4} textAnchor="start">
+          {label
+            ? label
+            : `(${round({
+                num: x,
+                numDecimals: 3,
+              })}, ${round({ num: y, numDecimals: 3 })})`}
+        </text>
+      )}
     </React.Fragment>
   );
 };

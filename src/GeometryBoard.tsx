@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Point, PointDisplay } from "./elements/Point";
+import { Point, PointConfiguration, PointDisplay } from "./elements/Point";
 import { CoordinateTransformer, NumberAtom } from "./helper-types";
 import { Provider } from "jotai";
 import { Axes, AxesDisplay } from "./elements/Axes";
@@ -32,8 +32,11 @@ export const GeometryBoard: React.FC<{
     };
 
     const axes = () => addElement(new Axes());
-    const point = (x: number | NumberAtom, y: number | NumberAtom) =>
-      addElement(new Point(x, y));
+    const point = (
+      x: number | NumberAtom,
+      y: number | NumberAtom,
+      cfg?: PointConfiguration,
+    ) => addElement(new Point(x, y, cfg));
     const lineSegment = (start: Point, end: Point) =>
       addElement(new LineSegment(start, end));
     const line = (start: Point, end: Point) => addElement(new Line(start, end));
@@ -90,7 +93,7 @@ export const GeometryBoard: React.FC<{
           {elements.map((el, i) => {
             if (el instanceof Axes) {
               return <AxesDisplay key={i} />;
-            } else if (el instanceof Point) {
+            } else if (el instanceof Point && !el?.cfg?.hidden) {
               return <PointDisplay point={el} key={i} />;
             } else if (el instanceof LineSegment) {
               return <LineSegmentDisplay lineSegment={el} key={i} />;
@@ -114,7 +117,11 @@ type BoardElement = Axes | Point | LineSegment | Line | Circle | Polygon;
 
 type BoardGenerator = (helpers: {
   axes: () => Axes;
-  point: (x: number | NumberAtom, y: number | NumberAtom) => Point;
+  point: (
+    x: number | NumberAtom,
+    y: number | NumberAtom,
+    cfg?: PointConfiguration,
+  ) => Point;
   lineSegment: (start: Point, end: Point) => LineSegment;
   line: (start: Point, end: Point) => Line;
   circle: (center: Point, radius: CircleRadius) => Circle;
