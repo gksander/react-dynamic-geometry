@@ -41,6 +41,6 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [x] Customizable Points
 - [ ] Customizable Line Segments
 - [ ] Customizable Lines
-- [ ] Customizable Circles
+- [x] Customizable Circles
 - [x] Port over Polygon functionality
-- [ ] Customizable Polygons
+- [x] Customizable Polygons

@@ -8,14 +8,19 @@ import { useBoardContext } from "../GeometryBoard";
 export class Polygon {
   __vertices: Point[];
   vertices: Atom<IPoint[]>;
+  cfg: PolygonConfiguration;
 
-  constructor(vertices: Point[]) {
+  constructor(vertices: Point[], cfg: PolygonConfiguration = {}) {
     this.__vertices = vertices;
     this.vertices = atom((get) =>
       this.__vertices.map((v) => ({ x: get(v.x), y: get(v.y) })),
     );
+
+    this.cfg = cfg;
   }
 }
+
+export type PolygonConfiguration = Partial<React.SVGProps<SVGPathElement>>;
 
 type PolygonDisplayProps = {
   polygon: Polygon;
@@ -34,7 +39,15 @@ export const PolygonDisplay: React.FC<PolygonDisplayProps> = ({ polygon }) => {
     ].join(" ");
   }, [vertices, transformX, transformY]);
 
-  return <path d={d} strokeWidth={1} stroke="black" fill="transparent" />;
+  return (
+    <path
+      strokeWidth={1}
+      stroke="black"
+      fill="transparent"
+      {...polygon.cfg}
+      d={d}
+    />
+  );
 };
 
 /**

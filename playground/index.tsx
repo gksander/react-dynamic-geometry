@@ -22,11 +22,17 @@ const HomePage: React.FC = () => {
             const O = builder.point(0, 0, { label: "O" });
             const H = builder.point(4, -4, { hidden: true });
 
-            // builder.line(A, B);
+            builder.line(A, H);
             // builder.lineSegment(O, A);
             // builder.lineSegment(O, B);
-            builder.polygon([A, B, O, H]);
-            builder.circle(A, B);
+            builder.polygon([A, B, O, H], {
+              fill: "blue",
+              fillOpacity: 0.3,
+            });
+            builder.circle(A, B, {
+              fill: "red",
+              fillOpacity: 0.3,
+            });
           }}
         </GeometryBoard>
       </div>

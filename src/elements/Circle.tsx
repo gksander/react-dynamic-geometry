@@ -9,8 +9,13 @@ import { abs } from "../utils/mathFns";
 export class Circle {
   center: Point;
   radius: NumberAtom;
+  cfg: CircleConfiguration;
 
-  constructor(center: Point, radius: CircleRadius) {
+  constructor(
+    center: Point,
+    radius: CircleRadius,
+    cfg: CircleConfiguration = {},
+  ) {
     this.center = center;
 
     this.radius = (() => {
@@ -32,10 +37,13 @@ export class Circle {
         );
       }
     })();
+
+    this.cfg = cfg;
   }
 }
 
 export type CircleRadius = Point | number | NumberAtom;
+export type CircleConfiguration = Partial<React.SVGProps<SVGEllipseElement>>;
 
 type CircleDisplayProps = {
   circle: Circle;
@@ -49,13 +57,15 @@ export const CircleDisplay: React.FC<CircleDisplayProps> = ({ circle }) => {
 
   return (
     <ellipse
+      strokeWidth={1}
+      stroke="black"
+      fill="transparent"
+      fillOpacity={0.9}
+      {...circle.cfg}
       cx={transformX(x)}
       cy={transformY(y)}
       rx={abs(transformX(radius))}
       ry={abs(transformY(radius))}
-      strokeWidth={1}
-      stroke="black"
-      fill="transparent"
     />
   );
 };

@@ -5,8 +5,17 @@ import { Provider } from "jotai";
 import { Axes, AxesDisplay } from "./elements/Axes";
 import { LineSegment, LineSegmentDisplay } from "./elements/LineSegment";
 import { Line, LineDisplay } from "./elements/Line";
-import { Circle, CircleDisplay, CircleRadius } from "./elements/Circle";
-import { Polygon, PolygonDisplay } from "./elements/Polygon";
+import {
+  Circle,
+  CircleConfiguration,
+  CircleDisplay,
+  CircleRadius,
+} from "./elements/Circle";
+import {
+  Polygon,
+  PolygonConfiguration,
+  PolygonDisplay,
+} from "./elements/Polygon";
 
 /**
  * API for using board
@@ -40,9 +49,13 @@ export const GeometryBoard: React.FC<{
     const lineSegment = (start: Point, end: Point) =>
       addElement(new LineSegment(start, end));
     const line = (start: Point, end: Point) => addElement(new Line(start, end));
-    const circle = (center: Point, radius: CircleRadius) =>
-      addElement(new Circle(center, radius));
-    const polygon = (vertices: Point[]) => addElement(new Polygon(vertices));
+    const circle = (
+      center: Point,
+      radius: CircleRadius,
+      cfg?: CircleConfiguration,
+    ) => addElement(new Circle(center, radius, cfg));
+    const polygon = (vertices: Point[], cfg?: PolygonConfiguration) =>
+      addElement(new Polygon(vertices, cfg));
 
     children({ point, axes, lineSegment, line, circle, polygon });
 
@@ -124,8 +137,12 @@ type BoardGenerator = (helpers: {
   ) => Point;
   lineSegment: (start: Point, end: Point) => LineSegment;
   line: (start: Point, end: Point) => Line;
-  circle: (center: Point, radius: CircleRadius) => Circle;
-  polygon: (vertices: Point[]) => Polygon;
+  circle: (
+    center: Point,
+    radius: CircleRadius,
+    cfg?: CircleConfiguration,
+  ) => Circle;
+  polygon: (vertices: Point[], cfg?: PolygonConfiguration) => Polygon;
 }) => void;
 
 type BoardConfig = {
