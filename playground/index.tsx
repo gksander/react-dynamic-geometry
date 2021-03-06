@@ -16,18 +16,18 @@ const HomePage: React.FC = () => {
       >
         <GeometryBoard>
           {(builder) => {
-            builder.axes();
+            // builder.axes();
             const A = builder.point(-2, 3, { label: "A" });
             const B = builder.point(4, 4, { label: "B" });
             const O = builder.point(0, 0, { label: "O" });
             const H = builder.point(4, -4, { hidden: true });
 
-            builder.line(A, H, {
-              strokeWidth: 1,
-              stroke: "purple",
-            });
+            // builder.line(A, H, {
+            //   strokeWidth: 1,
+            //   stroke: "purple",
+            // });
             // builder.lineSegment(O, A);
-            builder.lineSegment(O, B, { strokeWidth: 0.3, stroke: "blue" });
+            // builder.lineSegment(O, B, { strokeWidth: 0.3, stroke: "blue" });
             // builder.polygon([A, B, O, H], {
             //   fill: "blue",
             //   fillOpacity: 0.3,

@@ -146,3 +146,6 @@ const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
     </React.Fragment>
   );
 };
+
+export const point = (...args: ConstructorParameters<typeof Point>): Point =>
+  new Point(...args);

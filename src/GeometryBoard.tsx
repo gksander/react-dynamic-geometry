@@ -1,16 +1,8 @@
 import * as React from "react";
-import { Point, PointConfiguration } from "./elements/Point";
-import {
-  BoardElement,
-  CoordinateTransformer,
-  NumberAtom,
-} from "./helper-types";
+import { Point } from "./elements/Point";
+import { BoardElement, CoordinateTransformer } from "./helper-types";
 import { Provider } from "jotai";
-import { Axes } from "./elements/Axes";
-import { LineSegment, LineSegmentConfiguration } from "./elements/LineSegment";
-import { Line, LineConfiguration } from "./elements/Line";
-import { Circle, CircleConfiguration, CircleRadius } from "./elements/Circle";
-import { Polygon, PolygonConfiguration } from "./elements/Polygon";
+import { boardElementConstructors } from "./elements/boardElementConstructors";
 
 /**
  * API for using board
@@ -30,33 +22,25 @@ export const GeometryBoard: React.FC<{
    */
   React.useEffect(() => {
     const newElements: BoardElement[] = [];
-    const addElement: <T extends BoardElement>(el: T) => T = (el) => {
-      newElements.push(el);
-      return el;
+
+    const wrap = <T extends Array<any>, U extends BoardElement>(
+      fn: (...args: T) => U,
+    ) => {
+      return (...args: T): U => {
+        const el = fn(...args);
+        newElements.push(el);
+        return el;
+      };
     };
 
-    const axes = () => addElement(new Axes());
-    const point = (
-      x: number | NumberAtom,
-      y: number | NumberAtom,
-      cfg?: PointConfiguration,
-    ) => addElement(new Point(x, y, cfg));
-    const lineSegment = (
-      start: Point,
-      end: Point,
-      cfg?: LineSegmentConfiguration,
-    ) => addElement(new LineSegment(start, end, cfg));
-    const line = (start: Point, end: Point, cfg?: LineConfiguration) =>
-      addElement(new Line(start, end, cfg));
-    const circle = (
-      center: Point,
-      radius: CircleRadius,
-      cfg?: CircleConfiguration,
-    ) => addElement(new Circle(center, radius, cfg));
-    const polygon = (vertices: Point[], cfg?: PolygonConfiguration) =>
-      addElement(new Polygon(vertices, cfg));
+    const helpers: typeof boardElementConstructors = Object.entries(
+      boardElementConstructors,
+    ).reduce((obj, [key, fn]) => {
+      obj[key as keyof typeof boardElementConstructors] = wrap(fn);
+      return obj;
+    }, {} as any);
 
-    children({ point, axes, lineSegment, line, circle, polygon });
+    children(helpers);
 
     setElements(
       newElements.sort((a, b) => {
@@ -113,26 +97,7 @@ export const GeometryBoard: React.FC<{
 
 const SIZE = 50;
 
-type BoardGenerator = (helpers: {
-  axes: () => Axes;
-  point: (
-    x: number | NumberAtom,
-    y: number | NumberAtom,
-    cfg?: PointConfiguration,
-  ) => Point;
-  lineSegment: (
-    start: Point,
-    end: Point,
-    cfg?: LineSegmentConfiguration,
-  ) => LineSegment;
-  line: (start: Point, end: Point, cfg?: LineConfiguration) => Line;
-  circle: (
-    center: Point,
-    radius: CircleRadius,
-    cfg?: CircleConfiguration,
-  ) => Circle;
-  polygon: (vertices: Point[], cfg?: PolygonConfiguration) => Polygon;
-}) => void;
+type BoardGenerator = (helpers: typeof boardElementConstructors) => void;
 
 type BoardConfig = {
   xMin?: number;
