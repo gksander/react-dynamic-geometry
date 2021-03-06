@@ -1,6 +1,10 @@
 import * as React from "react";
 import { Point, PointConfiguration, PointDisplay } from "./elements/Point";
-import { CoordinateTransformer, NumberAtom } from "./helper-types";
+import {
+  BoardElement,
+  CoordinateTransformer,
+  NumberAtom,
+} from "./helper-types";
 import { Provider } from "jotai";
 import { Axes, AxesDisplay } from "./elements/Axes";
 import {
@@ -39,7 +43,7 @@ export const GeometryBoard: React.FC<{
    */
   React.useEffect(() => {
     const newElements: BoardElement[] = [];
-    const addElement: <T>(el: T) => T = (el) => {
+    const addElement: <T extends BoardElement>(el: T) => T = (el) => {
       newElements.push(el);
       return el;
     };
@@ -111,21 +115,9 @@ export const GeometryBoard: React.FC<{
     <Provider>
       <BoardContext.Provider value={value}>
         <svg viewBox={`${-SIZE} ${-SIZE} ${2 * SIZE} ${2 * SIZE}`} ref={svgRef}>
-          {elements.map((el, i) => {
-            if (el instanceof Axes) {
-              return <AxesDisplay key={i} />;
-            } else if (el instanceof Point && !el?.cfg?.hidden) {
-              return <PointDisplay point={el} key={i} />;
-            } else if (el instanceof LineSegment) {
-              return <LineSegmentDisplay lineSegment={el} key={i} />;
-            } else if (el instanceof Line) {
-              return <LineDisplay line={el} key={i} index={i} />;
-            } else if (el instanceof Circle) {
-              return <CircleDisplay circle={el} key={i} />;
-            } else if (el instanceof Polygon) {
-              return <PolygonDisplay polygon={el} key={i} />;
-            }
-          })}
+          {elements.map((el, i) => (
+            <el.Render index={i} key={i} />
+          ))}
         </svg>
       </BoardContext.Provider>
     </Provider>
@@ -133,8 +125,6 @@ export const GeometryBoard: React.FC<{
 };
 
 const SIZE = 50;
-
-type BoardElement = Axes | Point | LineSegment | Line | Circle | Polygon;
 
 type BoardGenerator = (helpers: {
   axes: () => Axes;

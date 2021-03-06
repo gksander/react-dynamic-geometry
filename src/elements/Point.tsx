@@ -1,13 +1,13 @@
 import * as React from "react";
 import { atom, useAtom, WritableAtom } from "jotai";
 import { useBoardContext } from "../GeometryBoard";
-import { IPoint, NumberAtom } from "../helper-types";
+import { BoardElement, IPoint, NumberAtom } from "../helper-types";
 import { round } from "../utils/mathFns";
 
 /**
  * Point class
  */
-export class Point {
+export class Point implements BoardElement {
   x: NumberAtom;
   y: NumberAtom;
   coordsAtom: WritableAtom<IPoint, (prev: IPoint) => IPoint>;
@@ -44,6 +44,8 @@ export class Point {
 
     this.cfg = cfg;
   }
+
+  Render = () => <PointDisplay point={this} />;
 }
 
 export type PointConfiguration = {

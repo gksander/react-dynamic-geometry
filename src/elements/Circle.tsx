@@ -3,10 +3,10 @@ import { Point } from "./Point";
 import { useBoardContext } from "../GeometryBoard";
 import { atom, useAtom } from "jotai";
 import { distanceBetweenPoints } from "../utils/distanceBetweenPoints";
-import { NumberAtom } from "../helper-types";
+import { BoardElement, NumberAtom } from "../helper-types";
 import { abs } from "../utils/mathFns";
 
-export class Circle {
+export class Circle implements BoardElement {
   center: Point;
   radius: NumberAtom;
   cfg: CircleConfiguration;
@@ -40,6 +40,8 @@ export class Circle {
 
     this.cfg = cfg;
   }
+
+  Render = () => <CircleDisplay circle={this} />;
 }
 
 export type CircleRadius = Point | number | NumberAtom;

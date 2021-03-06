@@ -1,13 +1,15 @@
 import * as React from "react";
 import { useBoardContext } from "../GeometryBoard";
 import { ArrowHeadMarkerDefs } from "./ArrowHeadMarkerDefs";
+import { BoardElement } from "../helper-types";
 
-export class Axes {}
+export class Axes implements BoardElement {
+  Render = AxesDisplay;
+}
 
 type AxesDisplayProps = {};
 export const AxesDisplay: React.FC<AxesDisplayProps> = () => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
-  const tt = useBoardContext();
   const stroke = "gray"; // TODO: Should be configurable
   const id = "axes"; // TODO: Should not be hardcoded?
 

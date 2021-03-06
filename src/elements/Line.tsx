@@ -3,9 +3,9 @@ import { Point } from "./Point";
 import { useAtom } from "jotai";
 import { useBoardContext } from "../GeometryBoard";
 import { ArrowHeadMarkerDefs } from "./ArrowHeadMarkerDefs";
-import { IPoint } from "../helper-types";
+import { BoardElement, IPoint } from "../helper-types";
 
-export class Line {
+export class Line implements BoardElement {
   start: Point;
   end: Point;
   cfg: LineConfiguration;
@@ -15,15 +15,22 @@ export class Line {
     this.end = end;
     this.cfg = cfg;
   }
+
+  Render = ({ index }: { index: number }) => (
+    <LineDisplay line={this} index={index} />
+  );
 }
 
 export type LineConfiguration = Partial<React.SVGProps<SVGLineElement>>;
 
 type LineDisplayProps = {
   line: Line;
-  index: number;
+  index?: number;
 };
-export const LineDisplay: React.FC<LineDisplayProps> = ({ line, index }) => {
+export const LineDisplay: React.FC<LineDisplayProps> = ({
+  line,
+  index = 1,
+}) => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
   const [xi] = useAtom(line.start.x);
   const [yi] = useAtom(line.start.y);

@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Point } from "./Point";
 import { atom, Atom, useAtom } from "jotai";
-import { IPoint } from "../helper-types";
+import { BoardElement, IPoint } from "../helper-types";
 import { square } from "../utils/mathFns";
 import { useBoardContext } from "../GeometryBoard";
 
-export class Polygon {
+export class Polygon implements BoardElement {
   __vertices: Point[];
   vertices: Atom<IPoint[]>;
   cfg: PolygonConfiguration;
@@ -18,6 +18,8 @@ export class Polygon {
 
     this.cfg = cfg;
   }
+
+  Render = () => <PolygonDisplay polygon={this} />;
 }
 
 export type PolygonConfiguration = Partial<React.SVGProps<SVGPathElement>>;

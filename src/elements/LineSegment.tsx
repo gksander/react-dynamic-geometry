@@ -2,11 +2,12 @@ import * as React from "react";
 import { Point } from "./Point";
 import { useBoardContext } from "../GeometryBoard";
 import { useAtom } from "jotai";
+import { BoardElement } from "../helper-types";
 
 /**
  * Line segment class
  */
-export class LineSegment {
+export class LineSegment implements BoardElement {
   start: Point;
   end: Point;
   cfg: LineSegmentConfiguration;
@@ -16,6 +17,8 @@ export class LineSegment {
     this.end = end;
     this.cfg = cfg;
   }
+
+  Render = () => <LineSegmentDisplay lineSegment={this} />;
 }
 
 export type LineSegmentConfiguration = Partial<React.SVGProps<SVGLineElement>>;
