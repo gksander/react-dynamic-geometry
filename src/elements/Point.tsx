@@ -62,7 +62,7 @@ export type PointConfiguration = {
 type PointDisplayProps = {
   point: Point;
 };
-export const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
+const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
   const [_, setCoords] = useAtom(point.coordsAtom);
   const [x] = useAtom(point.x);
   const [y] = useAtom(point.y);

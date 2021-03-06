@@ -1,29 +1,16 @@
 import * as React from "react";
-import { Point, PointConfiguration, PointDisplay } from "./elements/Point";
+import { Point, PointConfiguration } from "./elements/Point";
 import {
   BoardElement,
   CoordinateTransformer,
   NumberAtom,
 } from "./helper-types";
 import { Provider } from "jotai";
-import { Axes, AxesDisplay } from "./elements/Axes";
-import {
-  LineSegment,
-  LineSegmentConfiguration,
-  LineSegmentDisplay,
-} from "./elements/LineSegment";
-import { Line, LineConfiguration, LineDisplay } from "./elements/Line";
-import {
-  Circle,
-  CircleConfiguration,
-  CircleDisplay,
-  CircleRadius,
-} from "./elements/Circle";
-import {
-  Polygon,
-  PolygonConfiguration,
-  PolygonDisplay,
-} from "./elements/Polygon";
+import { Axes } from "./elements/Axes";
+import { LineSegment, LineSegmentConfiguration } from "./elements/LineSegment";
+import { Line, LineConfiguration } from "./elements/Line";
+import { Circle, CircleConfiguration, CircleRadius } from "./elements/Circle";
+import { Polygon, PolygonConfiguration } from "./elements/Polygon";
 
 /**
  * API for using board

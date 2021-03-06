@@ -27,10 +27,7 @@ type LineDisplayProps = {
   line: Line;
   index?: number;
 };
-export const LineDisplay: React.FC<LineDisplayProps> = ({
-  line,
-  index = 1,
-}) => {
+const LineDisplay: React.FC<LineDisplayProps> = ({ line, index = 1 }) => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
   const [xi] = useAtom(line.start.x);
   const [yi] = useAtom(line.start.y);

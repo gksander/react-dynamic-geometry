@@ -29,7 +29,7 @@ export type LineSegmentConfiguration = Partial<React.SVGProps<SVGLineElement>>;
 type LineSegmentDisplayProps = {
   lineSegment: LineSegment;
 };
-export const LineSegmentDisplay: React.FC<LineSegmentDisplayProps> = ({
+const LineSegmentDisplay: React.FC<LineSegmentDisplayProps> = ({
   lineSegment,
 }) => {
   const { transformX, transformY } = useBoardContext();

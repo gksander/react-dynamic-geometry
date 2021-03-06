@@ -28,7 +28,7 @@ type PolygonDisplayProps = {
   polygon: Polygon;
 };
 
-export const PolygonDisplay: React.FC<PolygonDisplayProps> = ({ polygon }) => {
+const PolygonDisplay: React.FC<PolygonDisplayProps> = ({ polygon }) => {
   const { transformX, transformY } = useBoardContext();
   const [vertices] = useAtom(polygon.vertices);
 

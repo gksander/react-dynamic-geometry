@@ -8,7 +8,7 @@ export class Axes implements BoardElement {
 }
 
 type AxesDisplayProps = {};
-export const AxesDisplay: React.FC<AxesDisplayProps> = () => {
+const AxesDisplay: React.FC<AxesDisplayProps> = () => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
   const stroke = "gray"; // TODO: Should be configurable
   const id = "axes"; // TODO: Should not be hardcoded?

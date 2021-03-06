@@ -51,8 +51,8 @@ type CircleDisplayProps = {
   circle: Circle;
 };
 
-export const CircleDisplay: React.FC<CircleDisplayProps> = ({ circle }) => {
-  const { transformX, transformY, xMin } = useBoardContext();
+const CircleDisplay: React.FC<CircleDisplayProps> = ({ circle }) => {
+  const { transformX, transformY } = useBoardContext();
   const [x] = useAtom(circle.center.x);
   const [y] = useAtom(circle.center.y);
   const [radius] = useAtom(circle.radius);
