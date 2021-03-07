@@ -143,3 +143,6 @@ const LineDisplay: React.FC<LineDisplayProps> = ({ line, index = 1 }) => {
     </React.Fragment>
   );
 };
+
+export const line = (...args: ConstructorParameters<typeof Line>) =>
+  new Line(...args);

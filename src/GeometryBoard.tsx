@@ -2,7 +2,11 @@ import * as React from "react";
 import { Point } from "./elements/Point";
 import { BoardElement, CoordinateTransformer } from "./helper-types";
 import { Provider } from "jotai";
-import { boardElementConstructors } from "./elements/boardElementConstructors";
+import {
+  BoardElementConstructors,
+  boardElementConstructors,
+  MutableBoardElementConstructors,
+} from "./elements/boardElementConstructors";
 
 /**
  * API for using board
@@ -33,16 +37,18 @@ export const GeometryBoard: React.FC<{
       };
     };
 
-    const helpers: typeof boardElementConstructors = Object.entries(
+    // TODO: Type-safe here...
+    const helpers: MutableBoardElementConstructors = Object.entries(
       boardElementConstructors,
     ).reduce((obj, [key, fn]) => {
-      obj[key as keyof typeof boardElementConstructors] = wrap(fn);
+      obj[key] = wrap(fn);
       return obj;
     }, {} as any);
 
     children(helpers);
 
     setElements(
+      // Push Points to top, so they're displayed on top of other elements.
       newElements.sort((a, b) => {
         if (a instanceof Point) {
           return 1;
@@ -97,7 +103,7 @@ export const GeometryBoard: React.FC<{
 
 const SIZE = 50;
 
-type BoardGenerator = (helpers: typeof boardElementConstructors) => void;
+type BoardGenerator = (helpers: BoardElementConstructors) => void;
 
 type BoardConfig = {
   xMin?: number;

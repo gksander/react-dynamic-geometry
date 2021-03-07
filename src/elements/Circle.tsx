@@ -71,3 +71,6 @@ const CircleDisplay: React.FC<CircleDisplayProps> = ({ circle }) => {
     />
   );
 };
+
+export const circle = (...args: ConstructorParameters<typeof Circle>) =>
+  new Circle(...args);

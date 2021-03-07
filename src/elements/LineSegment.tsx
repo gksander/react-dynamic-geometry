@@ -50,3 +50,7 @@ const LineSegmentDisplay: React.FC<LineSegmentDisplayProps> = ({
     />
   );
 };
+
+export const lineSegment = (
+  ...args: ConstructorParameters<typeof LineSegment>
+) => new LineSegment(...args);

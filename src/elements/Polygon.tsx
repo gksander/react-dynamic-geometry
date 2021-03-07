@@ -86,3 +86,6 @@ const squaredPolar = (
     r2: square(point.x - center.x) + square(point.y - center.y),
   };
 };
+
+export const polygon = (...args: ConstructorParameters<typeof Polygon>) =>
+  new Polygon(...args);

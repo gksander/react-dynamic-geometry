@@ -39,3 +39,6 @@ const AxesDisplay: React.FC<AxesDisplayProps> = () => {
     </React.Fragment>
   );
 };
+
+export const axes = (...args: ConstructorParameters<typeof Axes>) =>
+  new Axes(...args);

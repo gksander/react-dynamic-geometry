@@ -147,5 +147,5 @@ const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
   );
 };
 
-export const point = (...args: ConstructorParameters<typeof Point>): Point =>
+export const point = (...args: ConstructorParameters<typeof Point>) =>
   new Point(...args);
