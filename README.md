@@ -39,15 +39,10 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 
 ## TODO:
 
-- [x] Cleanup/Abstractions to make registering new elements easier
+- [ ] Testing setup...
+- [ ] Method for documentation.
+- [ ] GitHub actions for publishing to NPM on commits to main?
 - [ ] Customizable axes
-- [x] Point labels
-- [x] Customizable Points
-- [x] Customizable Line Segments
-- [x] Customizable Lines
-- [x] Customizable Circles
-- [x] Port over Polygon functionality
-- [x] Customizable Polygons
 
 ### Elements to Create
 
