@@ -3,6 +3,7 @@ import { atom, useAtom, WritableAtom } from "jotai";
 import { useBoardContext } from "../GeometryBoard";
 import { BoardElement, IPoint, NumberAtom } from "../helper-types";
 import { round } from "../utils/mathFns";
+import { RawPointDisplay } from "../components/RawPointDisplay";
 
 /**
  * Point class
@@ -121,32 +122,10 @@ const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
     [transformX, transformY, untransformX, untransformY],
   );
 
-  const { size = 1.5, color = "blue", label, hideLabel } = point.cfg;
-  const cx = transformX(x);
-  const cy = transformY(y);
-
   return (
-    <React.Fragment>
-      <circle
-        cx={cx}
-        cy={cy}
-        r={size}
-        fill={color}
-        fillOpacity={0.9}
-        stroke={color}
-        strokeWidth={1}
-        onPointerDown={handlePointerDown}
-      />
-      {!hideLabel && (
-        <text x={cx + 2} y={cy - 2} fontSize={4} textAnchor="start">
-          {label
-            ? label
-            : `(${round({
-                num: x,
-                numDecimals: 3,
-              })}, ${round({ num: y, numDecimals: 3 })})`}
-        </text>
-      )}
-    </React.Fragment>
+    <RawPointDisplay
+      {...{ x, y, cfg: point.cfg }}
+      onPointerDown={handlePointerDown}
+    />
   );
 };

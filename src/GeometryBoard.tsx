@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BoardElement, CoordinateTransformer } from "./helper-types";
 import { Provider } from "jotai";
-import { Builder, BuildFn } from "./elements/Builder";
+import { Builder, BuildFn } from "./Builder";
 
 /**
  * API for using board

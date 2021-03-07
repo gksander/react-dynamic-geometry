@@ -1,10 +1,11 @@
-import { Point } from "./Point";
-import { BoardElement } from "../helper-types";
-import { Axes } from "./Axes";
-import { LineSegment } from "./LineSegment";
-import { Line } from "./Line";
-import { Circle } from "./Circle";
-import { Polygon } from "./Polygon";
+import { Point } from "./elements/Point";
+import { BoardElement } from "./helper-types";
+import { Axes } from "./elements/Axes";
+import { LineSegment } from "./elements/LineSegment";
+import { Line } from "./elements/Line";
+import { Circle } from "./elements/Circle";
+import { Polygon } from "./elements/Polygon";
+import { Midpoint } from "./elements/Midpoint";
 
 /**
  * Type of board elements
@@ -16,6 +17,7 @@ export const boardElementTypes = {
   Line,
   Circle,
   Polygon,
+  Midpoint,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import { GeometryBoard } from "../src";
+import { BasicExample } from "./examples/BasicExample";
+import { MidpointExample } from "./examples/MidpointExample";
 
 const HomePage: React.FC = () => {
   return (
@@ -14,22 +15,18 @@ const HomePage: React.FC = () => {
           overflow: "hidden",
         }}
       >
-        <GeometryBoard>
-          {(build) => {
-            build("Axes", {});
-
-            const A = build("Point", { x: 2, y: 2, cfg: { label: "A" } });
-            const B = build("Point", { x: -3, y: 3 });
-            const O = build("Point", { x: -5, y: 8 });
-
-            build("Line", { start: A, end: B });
-            build("Circle", { center: B, radius: A.x });
-            build("Polygon", {
-              vertices: [A, B, O],
-              cfg: { fill: "red", fillOpacity: 0.5 },
-            });
-          }}
-        </GeometryBoard>
+        <BasicExample />
+      </div>
+      <div
+        style={{
+          width: 400,
+          height: 400,
+          border: "1px solid black",
+          borderRadius: 5,
+          overflow: "hidden",
+        }}
+      >
+        <MidpointExample />
       </div>
     </div>
   );
