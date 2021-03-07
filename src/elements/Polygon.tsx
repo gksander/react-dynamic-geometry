@@ -10,7 +10,13 @@ export class Polygon implements BoardElement {
   vertices: Atom<IPoint[]>;
   cfg: PolygonConfiguration;
 
-  constructor(vertices: Point[], cfg: PolygonConfiguration = {}) {
+  constructor({
+    vertices,
+    cfg = {},
+  }: {
+    vertices: Point[];
+    cfg?: PolygonConfiguration;
+  }) {
     this.__vertices = vertices;
     this.vertices = atom((get) =>
       this.__vertices.map((v) => ({ x: get(v.x), y: get(v.y) })),
@@ -86,6 +92,3 @@ const squaredPolar = (
     r2: square(point.x - center.x) + square(point.y - center.y),
   };
 };
-
-export const polygon = (...args: ConstructorParameters<typeof Polygon>) =>
-  new Polygon(...args);

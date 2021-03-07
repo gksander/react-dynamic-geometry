@@ -12,7 +12,15 @@ export class LineSegment implements BoardElement {
   end: Point;
   cfg: LineSegmentConfiguration;
 
-  constructor(start: Point, end: Point, cfg: LineSegmentConfiguration = {}) {
+  constructor({
+    start,
+    end,
+    cfg = {},
+  }: {
+    start: Point;
+    end: Point;
+    cfg?: LineSegmentConfiguration;
+  }) {
     this.start = start;
     this.end = end;
     this.cfg = cfg;
@@ -50,7 +58,3 @@ const LineSegmentDisplay: React.FC<LineSegmentDisplayProps> = ({
     />
   );
 };
-
-export const lineSegment = (
-  ...args: ConstructorParameters<typeof LineSegment>
-) => new LineSegment(...args);

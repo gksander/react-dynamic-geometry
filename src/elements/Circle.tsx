@@ -11,11 +11,15 @@ export class Circle implements BoardElement {
   radius: NumberAtom;
   cfg: CircleConfiguration;
 
-  constructor(
-    center: Point,
-    radius: CircleRadius,
-    cfg: CircleConfiguration = {},
-  ) {
+  constructor({
+    center,
+    radius,
+    cfg = {},
+  }: {
+    center: Point;
+    radius: CircleRadius;
+    cfg?: CircleConfiguration;
+  }) {
     this.center = center;
 
     this.radius = (() => {
@@ -71,6 +75,3 @@ const CircleDisplay: React.FC<CircleDisplayProps> = ({ circle }) => {
     />
   );
 };
-
-export const circle = (...args: ConstructorParameters<typeof Circle>) =>
-  new Circle(...args);

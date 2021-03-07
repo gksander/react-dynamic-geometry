@@ -13,11 +13,15 @@ export class Point implements BoardElement {
   coordsAtom: WritableAtom<IPoint, (prev: IPoint) => IPoint>;
   cfg: PointConfiguration;
 
-  constructor(
-    x: number | NumberAtom,
-    y: number | NumberAtom,
-    cfg: PointConfiguration = {},
-  ) {
+  constructor({
+    x,
+    y,
+    cfg = {},
+  }: {
+    x: number | NumberAtom;
+    y: number | NumberAtom;
+    cfg?: PointConfiguration;
+  }) {
     this.x =
       typeof x === "number"
         ? atom(x)
@@ -146,6 +150,3 @@ const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
     </React.Fragment>
   );
 };
-
-export const point = (...args: ConstructorParameters<typeof Point>) =>
-  new Point(...args);

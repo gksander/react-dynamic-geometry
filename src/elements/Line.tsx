@@ -10,7 +10,15 @@ export class Line implements BoardElement {
   end: Point;
   cfg: LineConfiguration;
 
-  constructor(start: Point, end: Point, cfg: LineConfiguration = {}) {
+  constructor({
+    start,
+    end,
+    cfg = {},
+  }: {
+    start: Point;
+    end: Point;
+    cfg?: LineConfiguration;
+  }) {
     this.start = start;
     this.end = end;
     this.cfg = cfg;
@@ -143,6 +151,3 @@ const LineDisplay: React.FC<LineDisplayProps> = ({ line, index = 1 }) => {
     </React.Fragment>
   );
 };
-
-export const line = (...args: ConstructorParameters<typeof Line>) =>
-  new Line(...args);

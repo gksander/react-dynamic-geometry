@@ -1,12 +1,7 @@
 import * as React from "react";
-import { Point } from "./elements/Point";
 import { BoardElement, CoordinateTransformer } from "./helper-types";
 import { Provider } from "jotai";
-import {
-  BoardElementConstructors,
-  boardElementConstructors,
-  MutableBoardElementConstructors,
-} from "./elements/boardElementConstructors";
+import { Builder, BuildFn } from "./elements/Builder";
 
 /**
  * API for using board
@@ -25,40 +20,9 @@ export const GeometryBoard: React.FC<{
    * Building board based on generating fn
    */
   React.useEffect(() => {
-    const newElements: BoardElement[] = [];
-
-    const wrap = <T extends Array<any>, U extends BoardElement>(
-      fn: (...args: T) => U,
-    ) => {
-      return (...args: T): U => {
-        const el = fn(...args);
-        newElements.push(el);
-        return el;
-      };
-    };
-
-    // TODO: Type-safe here...
-    const helpers: MutableBoardElementConstructors = Object.entries(
-      boardElementConstructors,
-    ).reduce((obj, [key, fn]) => {
-      obj[key] = wrap(fn);
-      return obj;
-    }, {} as any);
-
-    children(helpers);
-
-    setElements(
-      // Push Points to top, so they're displayed on top of other elements.
-      newElements.sort((a, b) => {
-        if (a instanceof Point) {
-          return 1;
-        }
-        if (b instanceof Point) {
-          return -1;
-        }
-        return 0;
-      }),
-    );
+    const builder = new Builder();
+    children(builder.build);
+    setElements(builder.sortedElements);
   }, []);
 
   /**
@@ -103,7 +67,7 @@ export const GeometryBoard: React.FC<{
 
 const SIZE = 50;
 
-type BoardGenerator = (helpers: BoardElementConstructors) => void;
+type BoardGenerator = (build: BuildFn) => void;
 
 type BoardConfig = {
   xMin?: number;

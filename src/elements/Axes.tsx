@@ -4,8 +4,11 @@ import { ArrowHeadMarkerDefs } from "./ArrowHeadMarkerDefs";
 import { BoardElement } from "../helper-types";
 
 export class Axes implements BoardElement {
+  constructor({}: { cfg?: AxesConfig }) {}
   Render = AxesDisplay;
 }
+
+type AxesConfig = {};
 
 type AxesDisplayProps = {};
 const AxesDisplay: React.FC<AxesDisplayProps> = () => {
@@ -39,6 +42,3 @@ const AxesDisplay: React.FC<AxesDisplayProps> = () => {
     </React.Fragment>
   );
 };
-
-export const axes = (...args: ConstructorParameters<typeof Axes>) =>
-  new Axes(...args);
