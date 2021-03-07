@@ -73,8 +73,6 @@ The builder function is strongly-typed, so your editor should give you some inte
 
 ### Axes
 
-### Slider
-
 ### Point
 
 ### Line
@@ -92,6 +90,10 @@ The builder function is strongly-typed, so your editor should give you some inte
 ### PerpendicularLine
 
 ### Midpoint
+
+### Incenter
+
+### Incircle
 
 ## Feedback Welcome
 
