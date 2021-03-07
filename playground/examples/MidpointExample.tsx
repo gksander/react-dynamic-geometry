@@ -19,6 +19,11 @@ export const MidpointExample: React.FC<MidpointExampleProps> = () => {
           perpendicularTo: L,
           passesThrough: O,
         });
+
+        build("ParallelLine", {
+          parallelTo: L,
+          passesThrough: O,
+        });
       }}
     </GeometryBoard>
   );

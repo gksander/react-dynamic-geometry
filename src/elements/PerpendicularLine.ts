@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Line, LineConfiguration } from "./Line";
 import { Point } from "./Point";
 import { atom } from "jotai";
