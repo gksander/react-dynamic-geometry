@@ -26,6 +26,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
+    "elements": "^0.6.0",
     "jotai": "^0.15.1"
   }
 }

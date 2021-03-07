@@ -13,6 +13,7 @@ export const BasicExample: React.FC<BasicExampleProps> = () => {
         const B = build("Point", { x: -3, y: 3 });
         const O = build("Point", { x: -5, y: 8 });
         build("Incenter", { points: [A, B, O], cfg: { label: "Incenter" } });
+        build("Incircle", { points: [A, B, O] });
 
         build("Line", { start: A, end: B });
         build("Circle", { center: B, radius: A.x });
