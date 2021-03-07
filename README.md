@@ -51,7 +51,7 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [ ] Circumcircle and Circumcenter?
 - [x] Midpoint
 - [ ] Center of Polygon (whatever that's called)
-- [ ] Function graph/curve
+- [x] Function graph/curve
 - [ ] Parabola
 - [x] Perpendicular
 - [ ] Reflection across line

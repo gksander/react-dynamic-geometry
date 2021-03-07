@@ -8,6 +8,7 @@ import { Polygon } from "./elements/Polygon";
 import { Midpoint } from "./elements/Midpoint";
 import { PerpendicularLine } from "./elements/PerpendicularLine";
 import { ParallelLine } from "./elements/ParallelLine";
+import { FunctionGraph } from "./elements/FunctionGraph";
 
 /**
  * Type of board elements
@@ -22,6 +23,7 @@ export const boardElementTypes = {
   Midpoint,
   PerpendicularLine,
   ParallelLine,
+  FunctionGraph,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 

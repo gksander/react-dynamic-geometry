@@ -24,6 +24,16 @@ export const MidpointExample: React.FC<MidpointExampleProps> = () => {
           parallelTo: L,
           passesThrough: O,
         });
+
+        build("FunctionGraph", {
+          fn: (x) => 0.3 * Math.pow(x, 2),
+          a: A.x,
+          b: B.x,
+          cfg: {
+            strokeWidth: 0.3,
+            stroke: "red",
+          },
+        });
       }}
     </GeometryBoard>
   );
