@@ -53,7 +53,7 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [ ] Center of Polygon (whatever that's called)
 - [ ] Function graph/curve
 - [ ] Parabola
-- [ ] Perpendicular
+- [x] Perpendicular
 - [ ] Reflection across line
 - [ ] Regular Polygon
 - [ ] Sector
