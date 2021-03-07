@@ -49,7 +49,7 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [ ] Arc?
 - [ ] Bisector?
 - [ ] Circumcircle and Circumcenter?
-- [ ] Midpoint
+- [x] Midpoint
 - [ ] Center of Polygon (whatever that's called)
 - [ ] Function graph/curve
 - [ ] Parabola
