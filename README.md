@@ -8,23 +8,26 @@ The following code:
 
 ```jsx
 <GeometryBoard>
-  {(builder) => {
-  	builder.axes();
-  	const A = builder.point(-3, 3);
-  	const B = builder.point(4, 4);
-  	const O = builder.point(0, 0);
+  {(build) => {
+    build("Axes", {});
 
-  	builder.line(A, B);
-  	builder.lineSegment(O, A);
-  	builder.lineSegment(O, B);
-  	builder.circle(A, B);
+    const A = build("Point", { x: 2, y: 2, cfg: { label: "A" } });
+    const B = build("Point", { x: -3, y: 3 });
+    const O = build("Point", { x: -5, y: 8 });
+
+    build("Line", { start: A, end: B });
+    build("Circle", { center: B, radius: A.x });
+    build("Polygon", {
+      vertices: [A, B, O],
+      cfg: { fill: "red", fillOpacity: 0.5 },
+    });
   }}
 </GeometryBoard>
 ```
 
 Generates the following dynamic geometry board.
 
-![Sample of dynamic geometry board](./docs/img/rdg.gif)
+![Sample of dynamic geometry board](./docs/img/rdg-demo.gif)
 
 ## WARNING
 
@@ -36,7 +39,7 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 
 ## TODO:
 
-- [ ] Cleanup/Abstractions to make registering new elements easier
+- [x] Cleanup/Abstractions to make registering new elements easier
 - [ ] Customizable axes
 - [x] Point labels
 - [x] Customizable Points

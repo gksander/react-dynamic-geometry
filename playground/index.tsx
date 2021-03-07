@@ -16,10 +16,13 @@ const HomePage: React.FC = () => {
       >
         <GeometryBoard>
           {(build) => {
+            build("Axes", {});
+
             const A = build("Point", { x: 2, y: 2, cfg: { label: "A" } });
-            const B = build("Point", { x: 0, y: 3 });
-            const O = build("Point", { x: -5, y: 5 });
-            const L = build("Line", { start: A, end: B });
+            const B = build("Point", { x: -3, y: 3 });
+            const O = build("Point", { x: -5, y: 8 });
+
+            build("Line", { start: A, end: B });
             build("Circle", { center: B, radius: A.x });
             build("Polygon", {
               vertices: [A, B, O],
