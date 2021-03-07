@@ -10,9 +10,15 @@ export const MidpointExample: React.FC<MidpointExampleProps> = () => {
         build("Axes", {});
         const A = build("Point", { x: -2, y: -3, cfg: { label: "A" } });
         const B = build("Point", { x: 5, y: 7, cfg: { label: "B" } });
+        const O = build("Point", { x: 3, y: -3 });
 
-        build("LineSegment", { start: A, end: B });
+        const L = build("Line", { start: A, end: B });
         build("Midpoint", { start: A, end: B, cfg: { label: "Midpoint" } });
+
+        build("PerpendicularLine", {
+          perpendicularTo: L,
+          passesThrough: O,
+        });
       }}
     </GeometryBoard>
   );

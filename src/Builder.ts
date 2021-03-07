@@ -6,6 +6,7 @@ import { Line } from "./elements/Line";
 import { Circle } from "./elements/Circle";
 import { Polygon } from "./elements/Polygon";
 import { Midpoint } from "./elements/Midpoint";
+import { PerpendicularLine } from "./elements/PerpendicularLine";
 
 /**
  * Type of board elements
@@ -18,6 +19,7 @@ export const boardElementTypes = {
   Circle,
   Polygon,
   Midpoint,
+  PerpendicularLine,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 

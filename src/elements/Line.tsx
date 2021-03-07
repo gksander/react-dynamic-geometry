@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Point } from "./Point";
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { useBoardContext } from "../GeometryBoard";
 import { ArrowHeadMarkerDefs } from "./ArrowHeadMarkerDefs";
-import { BoardElement, IPoint } from "../helper-types";
+import { BoardElement, IPoint, NumberAtom } from "../helper-types";
 
 export class Line implements BoardElement {
   start: Point;
@@ -13,14 +13,40 @@ export class Line implements BoardElement {
   constructor({
     start,
     end,
+    slope,
     cfg = {},
   }: {
     start: Point;
-    end: Point;
+    end?: Point;
+    slope?: number | NumberAtom;
     cfg?: LineConfiguration;
   }) {
     this.start = start;
-    this.end = end;
+
+    if (end) {
+      this.end = end;
+    } else if (slope) {
+      this.end = new Point({
+        x: atom(
+          (get) => get(start.x) + 1,
+          () => {},
+        ),
+        y: atom(
+          (get) =>
+            get(start.y) + (typeof slope === "number" ? slope : get(slope)),
+          () => {},
+        ),
+      });
+    } else {
+      this.end = new Point({
+        x: atom(
+          (get) => get(start.x) + 1,
+          () => {},
+        ),
+        y: start.y,
+      });
+    }
+
     this.cfg = cfg;
   }
 
@@ -35,7 +61,10 @@ type LineDisplayProps = {
   line: Line;
   index?: number;
 };
-const LineDisplay: React.FC<LineDisplayProps> = ({ line, index = 1 }) => {
+export const LineDisplay: React.FC<LineDisplayProps> = ({
+  line,
+  index = 1,
+}) => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
   const [xi] = useAtom(line.start.x);
   const [yi] = useAtom(line.start.y);
