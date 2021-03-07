@@ -14,7 +14,7 @@ export const RawPointDisplay: React.FC<RawPointDisplayProps> = ({
   x,
   y,
   cfg,
-  onPointerDown = () => null,
+  onPointerDown,
 }) => {
   const { transformX, transformY } = useBoardContext();
   const { size = 1.5, color = "blue", label, hideLabel } = cfg;
@@ -36,6 +36,9 @@ export const RawPointDisplay: React.FC<RawPointDisplayProps> = ({
         stroke={color}
         strokeWidth={1}
         onPointerDown={onPointerDown}
+        style={{
+          cursor: typeof onPointerDown === "function" ? "pointer" : "auto",
+        }}
       />
       {!hideLabel && (
         <text x={cx + 2} y={cy - 2} fontSize={4} textAnchor="start">

@@ -1,10 +1,8 @@
 # React Dynamic Geometry
 
-A dynamic geometry library built on top of [React.js](https://reactjs.org/) and [Jotai](https://github.com/pmndrs/jotai). Easily create geometry "boards" with dynamic elements.
+A dynamic geometry library built on top of [React.js](https://reactjs.org/), [Jotai](https://github.com/pmndrs/jotai), and rendered with SVG. Easily create geometry "boards" with dynamic elements. Jotai is used for fine-grained state updates to keep dynamic boards performant.
 
-## Sample
-
-The following code:
+Here's a cute sample. The following code:
 
 ```jsx
 <GeometryBoard>
@@ -29,9 +27,71 @@ Generates the following dynamic geometry board.
 
 ![Sample of dynamic geometry board](./docs/img/rdg-demo.gif)
 
-## WARNING
+## Setup
 
-This project is still in the phase of "just playing around". I'm having fun building out geometric constructs, but do have plans to make this a more serious project once a few more ideas are fleshed out.
+If you're working inside a React project, all you need to do is install this library.
+
+```shell
+# For NPM
+npm install react-dynamic-geometry
+
+# For Yarn
+yarn add react-dynamic-geometry
+```
+
+Once the library is installed, import the `GeometryBoard` component from this library, and go to town!
+
+```jsx
+import { GeometryBoard } from 'react-dynamic-geometry';
+
+const MyFirstBoard = () => (
+  <GeometryBoard>
+    {(build) => {
+      build("Point", { x: 3, y: 5, cfg: { label: "Hello world!" } });
+    }}
+  </GeometryBoard>
+)
+```
+
+## API
+
+This library exports a single component, `GeometryBoard`, that takes a "builder" function as its sole child. The library exposes a handful of helpers for you to build dynamic geometry boards (via this builder function).
+
+Here's a small example to give you a taste of how to use the library:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: 0, y: 0 });
+    const B = build("Point", { x: 3, y: 5 });
+    build("Line", { start: A, end: B });
+  }}
+</GeometryBoard>
+```
+
+The builder function is strongly-typed, so your editor should give you some intellisense about what types of elements you can construct, and what their options are. The following documentation attempts to do this explicitly.
+
+### Axes
+
+### Slider
+
+### Point
+
+### Line
+
+### Line Segment
+
+### Circle
+
+### Polygon
+
+### FunctionGraph
+
+### ParallelLine
+
+### PerpendicularLine
+
+### Midpoint
 
 ## Feedback Welcome
 
