@@ -9,6 +9,7 @@ import { Midpoint } from "./elements/Midpoint";
 import { PerpendicularLine } from "./elements/PerpendicularLine";
 import { ParallelLine } from "./elements/ParallelLine";
 import { FunctionGraph } from "./elements/FunctionGraph";
+import { Incenter } from "./elements/Incenter";
 
 /**
  * Type of board elements
@@ -24,6 +25,7 @@ export const boardElementTypes = {
   PerpendicularLine,
   ParallelLine,
   FunctionGraph,
+  Incenter,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 
