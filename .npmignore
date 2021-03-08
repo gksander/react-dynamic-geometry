@@ -3,3 +3,4 @@ playground
 .idea
 .cache
 docs
+.prettierrc

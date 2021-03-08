@@ -9,7 +9,7 @@ import { PolygonExample } from "./examples/PolygonExample";
 import { FunctionGraphExample } from "./examples/FunctionGraphExample";
 import { ParallelLineExample } from "./examples/ParallelLineExample";
 import { PerpendicularLine } from "../src/elements/PerpendicularLine";
-import { PerpendicularLineExample } from "../docs/img/PerpendicularLineExample";
+import { PerpendicularLineExample } from "./examples/PerpendicularLineExample";
 import { MidpointExample } from "./examples/MidpointExample";
 import { IncenterExample } from "./examples/IncenterExample";
 import { IncircleExample } from "./examples/IncircleExample";
