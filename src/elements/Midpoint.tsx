@@ -32,18 +32,5 @@ export class Midpoint extends Point {
     this.end = end;
   }
 
-  Render = () => <MidpointDisplay midpoint={this} />;
+  Render = () => <RawPointDisplay point={this} />;
 }
-
-/**
- * Display
- */
-type MidpointDisplayProps = { midpoint: Midpoint };
-export const MidpointDisplay: React.FC<MidpointDisplayProps> = ({
-  midpoint,
-}) => {
-  const [x] = useAtom(midpoint.x);
-  const [y] = useAtom(midpoint.y);
-
-  return <RawPointDisplay {...{ x, y, cfg: midpoint.cfg }} />;
-};

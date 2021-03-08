@@ -1,27 +1,26 @@
 import * as React from "react";
-import { PointConfiguration } from "../elements/Point";
+import { Point, PointConfiguration } from "../elements/Point";
 import { round } from "../utils/mathFns";
 import { useBoardContext } from "../GeometryBoard";
+import { useAtom } from "jotai";
 
 type RawPointDisplayProps = {
-  x: number;
-  y: number;
-  cfg: PointConfiguration;
+  point: Point;
   onPointerDown?: React.SVGProps<SVGCircleElement>["onPointerDown"];
 };
 
 export const RawPointDisplay: React.FC<RawPointDisplayProps> = ({
-  x,
-  y,
-  cfg,
+  point,
   onPointerDown,
 }) => {
   const { transformX, transformY } = useBoardContext();
-  const { size = 1.5, color = "blue", label, hideLabel } = cfg;
+  const [x] = useAtom(point.x);
+  const [y] = useAtom(point.y);
+  const { size = 1.5, color = "blue", label, hideLabel } = point.cfg;
   const cx = transformX(x);
   const cy = transformY(y);
 
-  if (cfg.hidden) {
+  if (point.cfg.hidden) {
     return null;
   }
 

@@ -122,10 +122,5 @@ const PointDisplay: React.FC<PointDisplayProps> = ({ point }) => {
     [transformX, transformY, untransformX, untransformY],
   );
 
-  return (
-    <RawPointDisplay
-      {...{ x, y, cfg: point.cfg }}
-      onPointerDown={handlePointerDown}
-    />
-  );
+  return <RawPointDisplay point={point} onPointerDown={handlePointerDown} />;
 };
