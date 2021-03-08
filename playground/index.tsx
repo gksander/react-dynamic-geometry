@@ -12,6 +12,8 @@ import { PerpendicularLine } from "../src/elements/PerpendicularLine";
 import { PerpendicularLineExample } from "../docs/img/PerpendicularLineExample";
 import { MidpointExample } from "./examples/MidpointExample";
 import { IncenterExample } from "./examples/IncenterExample";
+import { IncircleExample } from "./examples/IncircleExample";
+import { LineSegmentExample } from "./examples/LineSegmentExample";
 
 const HomePage: React.FC = () => {
   return (
@@ -58,6 +60,10 @@ const Examples: { title: string; Component: React.FC }[] = [
     Component: LineExample,
   },
   {
+    title: "LineSegment",
+    Component: LineSegmentExample,
+  },
+  {
     title: "Circle",
     Component: CircleExample,
   },
@@ -84,6 +90,10 @@ const Examples: { title: string; Component: React.FC }[] = [
   {
     title: "Incenter",
     Component: IncenterExample,
+  },
+  {
+    title: "Incircle",
+    Component: IncircleExample,
   },
 ];
 

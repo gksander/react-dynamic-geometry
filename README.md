@@ -141,7 +141,27 @@ TODO: Line options
 
 ### Line Segment
 
-TODO: Line segment docs
+The `LineSegment` element will create a line segment on the board, passing through two provided points (`start` and `end`). Here's an
+example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -5, y: 5 });
+    const B = build("Point", { x: 3, y: -4 });
+
+    build("LineSegment", { start: A, end: B, cfg: { stroke: "red" } });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Line Segment through two points](./docs/img/linesegment-example.gif)
+
+#### Options
+
+TODO: Line options
 
 ### Circle
 
@@ -327,7 +347,56 @@ TODO: PerpendicularLine options
 
 ### Incenter
 
+The `Incenter` element will create the incenter of the triangle created by the three provided points. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -5, y: -3 });
+    const B = build("Point", { x: 6, y: -3 });
+    const C = build("Point", { x: -4, y: 5 });
+    build("Polygon", { vertices: [A, B, C] });
+
+    build("Incenter", { points: [A, B, C], cfg: { label: "Incenter" } });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Incenter command](./docs/img/incenter-example.gif)
+
+#### Options
+
+TODO: Incenter options
+
 ### Incircle
+
+The `Incircle` element will create the incircle of the triangle created by the three provided points. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -5, y: -3 });
+    const B = build("Point", { x: 6, y: -3 });
+    const C = build("Point", { x: -4, y: 5 });
+    build("Polygon", { vertices: [A, B, C] });
+
+    build("Incircle", {
+      points: [A, B, C],
+      cfg: { fill: "blue", fillOpacity: 0.2 },
+    });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Incircle command](./docs/img/incircle-example.gif)
+
+#### Options
+
+TODO: Incircle options
 
 ## Feedback Welcome
 
