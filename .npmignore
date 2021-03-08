@@ -4,3 +4,4 @@ playground
 .cache
 docs
 .prettierrc
+__tests__

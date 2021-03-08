@@ -30,14 +30,14 @@ export const GeometryBoard: React.FC<{
    */
   const value: BoardContextValue = React.useMemo(() => {
     const transformX: CoordinateTransformer = (xCartesian: number): number =>
-      -SIZE + ((xCartesian - xMin) / (xMax - xMin)) * 2 * SIZE;
+      -__BOARD_SIZE + ((xCartesian - xMin) / (xMax - xMin)) * 2 * __BOARD_SIZE;
     const untransformX: CoordinateTransformer = (xSvg) =>
-      ((xSvg + SIZE) / (2 * SIZE)) * (xMax - xMin) + xMin;
+      ((xSvg + __BOARD_SIZE) / (2 * __BOARD_SIZE)) * (xMax - xMin) + xMin;
 
     const transformY: CoordinateTransformer = (yCartesian: number): number =>
-      SIZE - ((yCartesian - yMin) / (yMax - yMin)) * 2 * SIZE;
+      __BOARD_SIZE - ((yCartesian - yMin) / (yMax - yMin)) * 2 * __BOARD_SIZE;
     const untransformY: CoordinateTransformer = (ySvg) =>
-      ((SIZE - ySvg) / (2 * SIZE)) * (yMax - yMin) + yMin;
+      ((__BOARD_SIZE - ySvg) / (2 * __BOARD_SIZE)) * (yMax - yMin) + yMin;
 
     return {
       transformX,
@@ -55,7 +55,12 @@ export const GeometryBoard: React.FC<{
   return (
     <Provider>
       <BoardContext.Provider value={value}>
-        <svg viewBox={`${-SIZE} ${-SIZE} ${2 * SIZE} ${2 * SIZE}`} ref={svgRef}>
+        <svg
+          viewBox={`${-__BOARD_SIZE} ${-__BOARD_SIZE} ${2 * __BOARD_SIZE} ${
+            2 * __BOARD_SIZE
+          }`}
+          ref={svgRef}
+        >
           {elements.map((el, i) => (
             <el.Render index={i} key={i} />
           ))}
@@ -65,11 +70,11 @@ export const GeometryBoard: React.FC<{
   );
 };
 
-const SIZE = 50;
+export const __BOARD_SIZE = 50;
 
-type BoardGenerator = (build: BuildFn) => void;
+export type BoardGenerator = (build: BuildFn) => void;
 
-type BoardConfig = {
+export type BoardConfig = {
   xMin?: number;
   xMax?: number;
   yMin?: number;

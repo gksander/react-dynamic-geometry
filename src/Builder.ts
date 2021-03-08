@@ -12,8 +12,6 @@ import { FunctionGraph } from "./elements/FunctionGraph";
 import { Incenter } from "./elements/Incenter";
 import { Incircle } from "./elements/Incircle";
 
-console.log(Incircle);
-
 /**
  * Type of board elements
  */

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Point, PointConfiguration } from "../elements/Point";
+import { Point } from "../elements/Point";
 import { round } from "../utils/mathFns";
 import { useBoardContext } from "../GeometryBoard";
 import { useAtom } from "jotai";
@@ -24,6 +24,13 @@ export const RawPointDisplay: React.FC<RawPointDisplayProps> = ({
     return null;
   }
 
+  const theLabel = label
+    ? label
+    : `(${round({
+        num: x,
+        numDecimals: 3,
+      })}, ${round({ num: y, numDecimals: 3 })})`;
+
   return (
     <React.Fragment>
       <circle
@@ -38,15 +45,11 @@ export const RawPointDisplay: React.FC<RawPointDisplayProps> = ({
         style={{
           cursor: typeof onPointerDown === "function" ? "pointer" : "auto",
         }}
+        aria-label={`Point ${theLabel}`}
       />
       {!hideLabel && (
         <text x={cx + 2} y={cy - 2} fontSize={4} textAnchor="start">
-          {label
-            ? label
-            : `(${round({
-                num: x,
-                numDecimals: 3,
-              })}, ${round({ num: y, numDecimals: 3 })})`}
+          {theLabel}
         </text>
       )}
     </React.Fragment>
