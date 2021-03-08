@@ -8,12 +8,21 @@
     "build": "rm -rf dist && tsc",
     "dev": "tsc --watch",
     "playground": "parcel playground/index.html",
-    "prepare": "yarn build"
+    "prepare": "yarn build",
+    "test": "jest --config=jest.config.js",
+    "test:watch": "jest --config=jest.config.js --watch"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "@babel/preset-typescript": "^7.13.0",
+    "@testing-library/react": "^11.2.5",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
     "parcel-bundler": "1.12.3",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
