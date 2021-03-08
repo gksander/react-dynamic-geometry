@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Point, PointConfiguration } from "./Point";
-import { atom, useAtom } from "jotai";
+import { atom } from "jotai";
 import { RawPointDisplay } from "../components/RawPointDisplay";
 
 export class Midpoint extends Point {

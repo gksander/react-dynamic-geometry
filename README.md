@@ -113,7 +113,17 @@ which produces the following:
 
 #### Options
 
-TODO: Point options...
+The build signature for creating a `Point` element is `build("Point", options: { x, y, cfg? }): Point` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `x` | `number` or `NumberAtom` | ✅ | x coordinate of the point. If provided a `number`, value is a "free" atom which can be updated via drag. If provided a `NumberAtom`, coordinate cannot be change via drag. |
+| `y` | `number` or `NumberAtom` | ✅ | y coordinate of the point. Same behavior as `x`, but with the `y` coordinate |
+| `cfg.size` | `number` | ❌ | Size of the point in SVG units. Defaults to `1.5`.|
+| `cfg.color` | `string` | ❌ | Color of the point. |
+| `cfg.label` | `string` | ❌ | Label to add to the point. |
+| `cfg.hideLabel` | `boolean` | ❌ | Set to `true` to hide the label completely. |
+| `cfg.hidden` | `boolean` | ❌ | Set to `true` to hide the point completely. |
 
 ### Line
 
@@ -137,12 +147,18 @@ which produces the following:
 
 #### Options
 
-TODO: Line options
+The build signature for creating a `Line` element is `build("Line", options: { start, end, cfg? }): Line` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `start` | `Point` | ✅ | "Starting" point for the line (it passes through this point). |
+| `end` | `Point` | ✅ | "Ending" point for the line (it passes through this point). |
+| `cfg` | `Partial<React.SVGProps<SVGLineElement>>` | ❌ | SVG properties for the `line` primitive element used to draw the Line. |
 
 ### Line Segment
 
-The `LineSegment` element will create a line segment on the board, passing through two provided points (`start` and `end`). Here's an
-example:
+The `LineSegment` element will create a line segment on the board, passing through two provided points (`start`
+and `end`). Here's an example:
 
 ```jsx
 <GeometryBoard>
@@ -161,7 +177,13 @@ which produces the following:
 
 #### Options
 
-TODO: Line options
+The build signature for creating a `LineSegment` element is `build("LineSegment", options: { start, end, cfg? }): LineSegment` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `start` | `Point` | ✅ | "Starting" point for the line. |
+| `end` | `Point` | ✅ | "Ending" point for the line. |
+| `cfg` | `Partial<React.SVGProps<SVGLineElement>>` | ❌ | SVG properties for the `line` primitive element used to draw the LineSegment. |
 
 ### Circle
 
@@ -195,7 +217,13 @@ which produces the following:
 
 #### Options
 
-TODO: Circle options
+The build signature for creating a `Circle` element is `build("Circle", options: { center, radius, cfg? }): Circle` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `center` | `Point` | ✅ | Center point of the circle. |
+| `radius` | `Point` or `number` or `NumberAtom` | ✅ | If number-like, provides the radius of the circle. If `Point`, circle will pass through this point. |
+| `cfg` | `Partial<React.SVGProps<SVGEllipseElement>>` | ❌ | SVG properties for the `ellipse` primitive element used to draw the Circle. |
 
 ### Polygon
 
@@ -225,7 +253,12 @@ which produces the following:
 
 #### Options
 
-TODO: Polygon options
+The build signature for creating a `Polygon` element is `build("Polygon", options: { vertices, cfg? }): Polygon` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `vertices` | `Point[]` | ✅ | Array of `Point` elements that define the vertices of the polygon. |
+| `cfg` | `Partial<React.SVGProps<SVGPathElement>>` | ❌ | SVG properties for the `path` primitive element used to draw the Polygon. |
 
 ### FunctionGraph
 
@@ -258,7 +291,14 @@ which produces the following:
 
 #### Options
 
-TODO: Functiongraph options
+The build signature for creating a `FunctionGraph` element is `build("FunctionGraph", options: { fn, a?, b? cfg? }): FunctionGraph` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `fn` | `(x: number) => number` | ✅ | Function definition for the plot. |
+| `a` | `number` or `NumberAtom` | ❌ | Starting x-value for the plot. |
+| `b` | `number` or `NumberAtom` | ❌ | Ending x-value for the plot. |
+| `cfg` | `Partial<React.SVGProps<SVGPathElement>>` | ❌ | SVG properties for the `path` primitive element used to draw the FunctionGraph. |
 
 ### ParallelLine
 
@@ -288,7 +328,13 @@ which produces the following:
 
 #### Options
 
-TODO: ParallelLine options
+The build signature for creating a `ParallelLine` element is `build("ParallelLine", options: { parallelTo, passesThrough, cfg? }): Line` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `parallelTo` | `Line` | ✅ | Line that this line will be parallel to. |
+| `passesThrough` | `Point` | ✅ | Point that the parallel line will pass through. |
+| `cfg` | `Partial<React.SVGProps<SVGLineElement>>` | ❌ | SVG properties for the `line` primitive element used to draw the ParallelLine. |
 
 ### PerpendicularLine
 
@@ -318,7 +364,13 @@ which produces the following:
 
 #### Options
 
-TODO: PerpendicularLine options
+The build signature for creating a `PerpendicularLine` element is `build("PerpendicularLine", options: { perpendicularTo, passesThrough, cfg? }): Line` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `perpendicularTo` | `Line` | ✅ | Line that this line will be perpendicular to. |
+| `passesThrough` | `Point` | ✅ | Point that the perpendicular line will pass through. |
+| `cfg` | `Partial<React.SVGProps<SVGLineElement>>` | ❌ | SVG properties for the `line` primitive element used to draw the PerpendicularLine. |
 
 ### Midpoint
 
@@ -343,7 +395,13 @@ which produces the following:
 
 #### Options
 
-TODO: PerpendicularLine options
+The build signature for creating a `Midpoint` element is `build("Midpoint", options: { start, end, cfg? }): Point` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `start` | `Point` | ✅ | First point. |
+| `end` | `Point` | ✅ | Second point. |
+| `cfg` | Same as Point element's `cfg` option. | ❌ | Configuration for display of the point. |
 
 ### Incenter
 
@@ -368,7 +426,12 @@ which produces the following:
 
 #### Options
 
-TODO: Incenter options
+The build signature for creating a `Incenter` element is `build("Incenter", options: { points, cfg? }): Point` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `points` | `[Point, Point, Point]` | ✅ | Three points that define the triangle used to generate the incenter. |
+| `cfg` | Same as Point element's `cfg` option. | ❌ | Configuration for display of the point. |
 
 ### Incircle
 
@@ -396,7 +459,12 @@ which produces the following:
 
 #### Options
 
-TODO: Incircle options
+The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `points` | `[Point, Point, Point]` | ✅ | Three points that define the triangle used to generate the incenter. |
+| `cfg` | Same as Circle element's `cfg` option. | ❌ | Configuration for display of the `ellipse` SVG primitive. |
 
 ## Feedback Welcome
 

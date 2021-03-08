@@ -2,7 +2,6 @@ import * as React from "react";
 import { atom, useAtom, WritableAtom } from "jotai";
 import { useBoardContext } from "../GeometryBoard";
 import { BoardElement, IPoint, NumberAtom } from "../helper-types";
-import { round } from "../utils/mathFns";
 import { RawPointDisplay } from "../components/RawPointDisplay";
 
 /**
