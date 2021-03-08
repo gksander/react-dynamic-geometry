@@ -70,7 +70,8 @@ export const LineDisplay: React.FC<LineDisplayProps> = ({
   const [yi] = useAtom(line.start.y);
   const [xf] = useAtom(line.end.x);
   const [yf] = useAtom(line.end.y);
-  const id = `line-${index}`;
+  const lineColor = line.cfg?.stroke || "black";
+  const id = `line-${lineColor}`;
 
   const coords = React.useMemo<
     undefined | [number, number, number, number]
@@ -165,10 +166,10 @@ export const LineDisplay: React.FC<LineDisplayProps> = ({
 
   return (
     <React.Fragment>
-      <ArrowHeadMarkerDefs id={id} color={line.cfg?.stroke || "black"} />
+      <ArrowHeadMarkerDefs id={id} color={lineColor} />
       <line
         strokeWidth={1}
-        stroke="black"
+        stroke={lineColor}
         {...line.cfg}
         x1={transformX(x1)}
         y1={transformY(y1)}

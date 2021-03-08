@@ -209,11 +209,121 @@ TODO: Polygon options
 
 ### FunctionGraph
 
+The `FunctionGraph` element will create a graph of a function. You must provide the function definition to plot, an
+optionally provide the start (`a`) and end (`b`) x-values for the plot. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    build("Axes", {});
+
+    build("FunctionGraph", {
+      fn: (x) => 3 * Math.sin(x),
+      a: -2 * Math.PI,
+      b: 2 * Math.PI,
+      cfg: { stroke: "blue" },
+    });
+
+    build("FunctionGraph", {
+      fn: (x) => (x <= 0 ? x : 0.3 * x * x),
+      cfg: { stroke: "red" },
+    });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of FunctionGraph command](./docs/img/functiongraph-example.png)
+
+#### Options
+
+TODO: Functiongraph options
+
 ### ParallelLine
+
+The `ParallelLine` element will create a line that is parallel to another line that you provide, passing through a point
+that you provide. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -3, y: 4 });
+    const B = build("Point", { x: 5, y: -2 });
+    const C = build("Point", { x: 4, y: 5 });
+    const L = build("Line", { start: A, end: B, cfg: { stroke: "blue" } });
+
+    build("ParallelLine", {
+      parallelTo: L,
+      passesThrough: C,
+      cfg: { stroke: "red" },
+    });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of ParallelLine command](./docs/img/parallelline-example.gif)
+
+#### Options
+
+TODO: ParallelLine options
 
 ### PerpendicularLine
 
+The `PerpendicularLine` element will create a line that is perpendicular to another line that you provide, passing
+through a point that you provide. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -3, y: 4 });
+    const B = build("Point", { x: 5, y: -2 });
+    const C = build("Point", { x: 4, y: 5 });
+    const L = build("Line", { start: A, end: B, cfg: { stroke: "blue" } });
+
+    build("PerpendicularLine", {
+      perpendicularTo: L,
+      passesThrough: C,
+      cfg: { stroke: "red" },
+    });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of PerpendicularLine command](./docs/img/perpendicularline-example.gif)
+
+#### Options
+
+TODO: PerpendicularLine options
+
 ### Midpoint
+
+The `Midpoint` element will create a midpoint between two provided points. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    build("Axes", {});
+    const A = build("Point", { x: -2, y: -3, cfg: { label: "A" } });
+    const B = build("Point", { x: 5, y: 7, cfg: { label: "B" } });
+
+    build("LineSegment", { start: A, end: B });
+    build("Midpoint", { start: A, end: B, cfg: { label: "Midpoint" } });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Midpoint command](./docs/img/midpoint-example.gif)
+
+#### Options
+
+TODO: PerpendicularLine options
 
 ### Incenter
 
@@ -226,7 +336,6 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 ## TODO:
 
 - [ ] Testing setup...
-- [ ] Method for documentation.
 - [ ] GitHub actions for publishing to NPM on commits to main?
 - [ ] Customizable axes
 

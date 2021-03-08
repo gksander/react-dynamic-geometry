@@ -6,6 +6,12 @@ import { PointExample } from "./examples/PointExample";
 import { LineExample } from "./examples/LineExample";
 import { CircleExample } from "./examples/CircleExample";
 import { PolygonExample } from "./examples/PolygonExample";
+import { FunctionGraphExample } from "./examples/FunctionGraphExample";
+import { ParallelLineExample } from "./examples/ParallelLineExample";
+import { PerpendicularLine } from "../src/elements/PerpendicularLine";
+import { PerpendicularLineExample } from "../docs/img/PerpendicularLineExample";
+import { MidpointExample } from "./examples/MidpointExample";
+import { IncenterExample } from "./examples/IncenterExample";
 
 const HomePage: React.FC = () => {
   return (
@@ -58,6 +64,26 @@ const Examples: { title: string; Component: React.FC }[] = [
   {
     title: "Polygon",
     Component: PolygonExample,
+  },
+  {
+    title: "FunctionGraph",
+    Component: FunctionGraphExample,
+  },
+  {
+    title: "ParallelLine",
+    Component: ParallelLineExample,
+  },
+  {
+    title: "PerpendicularLine",
+    Component: PerpendicularLineExample,
+  },
+  {
+    title: "MidpointExample",
+    Component: MidpointExample,
+  },
+  {
+    title: "Incenter",
+    Component: IncenterExample,
   },
 ];
 
