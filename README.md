@@ -160,7 +160,6 @@ listed below.
 | `cfg` | `Partial<React.SVGProps<SVGLineElement>> & { isSegment?: boolean; }` | ❌ | SVG properties for the `line` primitive element used to draw the Line. |
 | `cfg?.isSegment` | `boolean` | ❌ | Pass `true` to render as a line segment. |
 
-
 ### Circle
 
 The `Circle` element will create a circle on the board, centered at a provided point and with a specified radius. If a
@@ -449,6 +448,45 @@ options listed below.
 | --- | --- | --- | --- |
 | `points` | `[Point, Point, Point]` | ✅ | Three points that define the triangle used to generate the incenter. |
 | `cfg` | Same as Circle element's `cfg` option. | ❌ | Configuration for display of the `ellipse` SVG primitive. |
+
+### LineIntersection
+
+The `LineIntersection` element will create the interesection point of the two provided lines. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -3, y: -3, cfg: { label: "A" } });
+    const B = build("Point", { x: 4, y: 6, cfg: { label: "B" } });
+    const L1 = build("Line", { start: A, end: B });
+
+    const C = build("Point", { x: -3, y: 5, cfg: { label: "C" } });
+    const D = build("Point", { x: 8, y: 3, cfg: { label: "D" } });
+    const L2 = build("Line", { start: C, end: D });
+
+    build("LineIntersection", {
+      line1: L1,
+      line2: L2,
+      cfg: { label: "I", color: "red" },
+    });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Incircle command](./docs/img/lineintersection-example.gif)
+
+#### Options
+
+The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with
+options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `line1` | `Line` | ✅ | First of the two lines. |
+| `line2` | `Line` | ✅ | Second of the two lines. |
+| `cfg` | Same as Line element's `cfg` option. | ❌ | Configuration for display of the `path` SVG primitive. |
 
 ## Feedback Welcome
 
