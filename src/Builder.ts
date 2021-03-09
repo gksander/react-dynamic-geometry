@@ -12,6 +12,7 @@ import { Incenter } from "./elements/Incenter";
 import { Incircle } from "./elements/Incircle";
 import { LineIntersection } from "./elements/LineIntersection";
 import { PerpendicularBisector } from "./elements/PerpendicularBisector";
+import { RegularPolygon } from "./elements/RegularPolygon";
 
 /**
  * Type of board elements
@@ -30,6 +31,7 @@ export const boardElementTypes = {
   Incircle,
   LineIntersection,
   PerpendicularBisector,
+  RegularPolygon,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 

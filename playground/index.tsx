@@ -15,6 +15,7 @@ import { IncenterExample } from "./examples/IncenterExample";
 import { IncircleExample } from "./examples/IncircleExample";
 import { LineIntersectionExample } from "./examples/LineIntersectionExample";
 import { PerpendicularBisectorExample } from "./examples/PerpendicularBisectorExample";
+import { RegularPolygonExample } from "./examples/RegularPolygonExample";
 
 const HomePage: React.FC = () => {
   return (
@@ -67,6 +68,10 @@ const Examples: { title: string; Component: React.FC }[] = [
   {
     title: "Polygon",
     Component: PolygonExample,
+  },
+  {
+    title: "RegularPolygon",
+    Component: RegularPolygonExample,
   },
   {
     title: "FunctionGraph",
