@@ -1,7 +1,6 @@
 import { Point } from "./elements/Point";
 import { BoardElement } from "./helper-types";
 import { Axes } from "./elements/Axes";
-import { LineSegment } from "./elements/LineSegment";
 import { Line } from "./elements/Line";
 import { Circle } from "./elements/Circle";
 import { Polygon } from "./elements/Polygon";
@@ -11,8 +10,6 @@ import { ParallelLine } from "./elements/ParallelLine";
 import { FunctionGraph } from "./elements/FunctionGraph";
 import { Incenter } from "./elements/Incenter";
 import { Incircle } from "./elements/Incircle";
-import { Circumcenter } from "./elements/Circumcenter";
-import { Circumcircle } from "./elements/Circumcircle";
 import { LineIntersection } from "./elements/LineIntersection";
 
 /**
@@ -21,7 +18,6 @@ import { LineIntersection } from "./elements/LineIntersection";
 export const boardElementTypes = {
   Axes,
   Point,
-  LineSegment,
   Line,
   Circle,
   Polygon,
@@ -31,8 +27,6 @@ export const boardElementTypes = {
   FunctionGraph,
   Incenter,
   Incircle,
-  Circumcenter,
-  Circumcircle,
   LineIntersection,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;

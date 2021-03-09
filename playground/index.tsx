@@ -13,8 +13,6 @@ import { PerpendicularLineExample } from "./examples/PerpendicularLineExample";
 import { MidpointExample } from "./examples/MidpointExample";
 import { IncenterExample } from "./examples/IncenterExample";
 import { IncircleExample } from "./examples/IncircleExample";
-import { LineSegmentExample } from "./examples/LineSegmentExample";
-import { CircurmcenterExample } from "./examples/CircumcenterExample";
 import { LineIntersectionExample } from "./examples/LineIntersectionExample";
 
 const HomePage: React.FC = () => {
@@ -62,10 +60,6 @@ const Examples: { title: string; Component: React.FC }[] = [
     Component: LineExample,
   },
   {
-    title: "LineSegment",
-    Component: LineSegmentExample,
-  },
-  {
     title: "Circle",
     Component: CircleExample,
   },
@@ -101,10 +95,6 @@ const Examples: { title: string; Component: React.FC }[] = [
     title: "LineIntersection",
     Component: LineIntersectionExample,
   },
-  // {
-  //   title: "Circumcenter",
-  //   Component: CircurmcenterExample,
-  // },
 ];
 
 ReactDOM.render(

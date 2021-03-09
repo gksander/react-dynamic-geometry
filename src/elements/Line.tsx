@@ -61,11 +61,12 @@ export class Line implements BoardElement {
   Render = () => <LineDisplay line={this} />;
 }
 
-export type LineConfiguration = Partial<React.SVGProps<SVGLineElement>>;
+export type LineConfiguration = Partial<React.SVGProps<SVGLineElement>> & {
+  isSegment?: boolean;
+};
 
 type LineDisplayProps = {
   line: Line;
-  index?: number;
 };
 export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
@@ -75,10 +76,15 @@ export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
   const [yf] = useAtom(line.end.y);
   const lineColor = line.cfg?.stroke || "black";
   const id = `line-${lineColor}`;
+  const { isSegment = false, ...passThru } = line.cfg;
 
   const coords = React.useMemo<
     undefined | [number, number, number, number]
   >(() => {
+    if (isSegment) {
+      return [xi, yi, xf, yf];
+    }
+
     // Vertical line
     if (xi === xf) {
       if (xi < xMin || xi > xMax) {
@@ -159,7 +165,7 @@ export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
     }
 
     return undefined;
-  }, [xMin, xMin, yMin, yMax, xi, xf, yi, yf]);
+  }, [xMin, xMin, yMin, yMax, xi, xf, yi, yf, isSegment]);
 
   if (!coords) {
     return null;
@@ -169,17 +175,17 @@ export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
 
   return (
     <React.Fragment>
-      <ArrowHeadMarkerDefs id={id} color={lineColor} />
+      {!isSegment && <ArrowHeadMarkerDefs id={id} color={lineColor} />}
       <line
         strokeWidth={1}
         stroke={lineColor}
-        {...line.cfg}
+        {...passThru}
         x1={transformX(x1)}
         y1={transformY(y1)}
         x2={transformX(x2)}
         y2={transformY(y2)}
-        markerStart={`url(#arrowStart-${id})`}
-        markerEnd={`url(#arrowEnd-${id})`}
+        markerStart={isSegment ? "" : `url(#arrowStart-${id})`}
+        markerEnd={isSegment ? "" : `url(#arrowEnd-${id})`}
       />
     </React.Fragment>
   );

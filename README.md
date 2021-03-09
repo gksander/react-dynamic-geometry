@@ -113,7 +113,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Point` element is `build("Point", options: { x, y, cfg? }): Point` with options listed below.
+The build signature for creating a `Point` element is `build("Point", options: { x, y, cfg? }): Point` with options
+listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -135,8 +136,10 @@ example:
   {(build) => {
     const A = build("Point", { x: -5, y: 5 });
     const B = build("Point", { x: 3, y: -4 });
+    const C = build("Point", { x: -3, y: -5 });
 
     build("Line", { start: A, end: B, cfg: { stroke: "purple" } });
+    build("Line", { start: A, end: C, cfg: { isSegment: true } });
   }}
 </GeometryBoard>
 ```
@@ -147,43 +150,16 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Line` element is `build("Line", options: { start, end, cfg? }): Line` with options listed below.
+The build signature for creating a `Line` element is `build("Line", options: { start, end, cfg? }): Line` with options
+listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
 | `start` | `Point` | ✅ | "Starting" point for the line (it passes through this point). |
 | `end` | `Point` | ✅ | "Ending" point for the line (it passes through this point). |
-| `cfg` | `Partial<React.SVGProps<SVGLineElement>>` | ❌ | SVG properties for the `line` primitive element used to draw the Line. |
+| `cfg` | `Partial<React.SVGProps<SVGLineElement>> & { isSegment?: boolean; }` | ❌ | SVG properties for the `line` primitive element used to draw the Line. |
+| `cfg?.isSegment` | `boolean` | ❌ | Pass `true` to render as a line segment. |
 
-### Line Segment
-
-The `LineSegment` element will create a line segment on the board, passing through two provided points (`start`
-and `end`). Here's an example:
-
-```jsx
-<GeometryBoard>
-  {(build) => {
-    const A = build("Point", { x: -5, y: 5 });
-    const B = build("Point", { x: 3, y: -4 });
-
-    build("LineSegment", { start: A, end: B, cfg: { stroke: "red" } });
-  }}
-</GeometryBoard>
-```
-
-which produces the following:
-
-![Example of Line Segment through two points](./docs/img/linesegment-example.gif)
-
-#### Options
-
-The build signature for creating a `LineSegment` element is `build("LineSegment", options: { start, end, cfg? }): LineSegment` with options listed below.
-
-| Option | Type | Required? | Description |
-| --- | --- | --- | --- |
-| `start` | `Point` | ✅ | "Starting" point for the line. |
-| `end` | `Point` | ✅ | "Ending" point for the line. |
-| `cfg` | `Partial<React.SVGProps<SVGLineElement>>` | ❌ | SVG properties for the `line` primitive element used to draw the LineSegment. |
 
 ### Circle
 
@@ -217,7 +193,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Circle` element is `build("Circle", options: { center, radius, cfg? }): Circle` with options listed below.
+The build signature for creating a `Circle` element is `build("Circle", options: { center, radius, cfg? }): Circle` with
+options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -253,7 +230,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Polygon` element is `build("Polygon", options: { vertices, cfg? }): Polygon` with options listed below.
+The build signature for creating a `Polygon` element is `build("Polygon", options: { vertices, cfg? }): Polygon` with
+options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -291,7 +269,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `FunctionGraph` element is `build("FunctionGraph", options: { fn, a?, b? cfg? }): FunctionGraph` with options listed below.
+The build signature for creating a `FunctionGraph` element
+is `build("FunctionGraph", options: { fn, a?, b? cfg? }): FunctionGraph` with options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -328,7 +307,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `ParallelLine` element is `build("ParallelLine", options: { parallelTo, passesThrough, cfg? }): Line` with options listed below.
+The build signature for creating a `ParallelLine` element
+is `build("ParallelLine", options: { parallelTo, passesThrough, cfg? }): Line` with options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -364,7 +344,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `PerpendicularLine` element is `build("PerpendicularLine", options: { perpendicularTo, passesThrough, cfg? }): Line` with options listed below.
+The build signature for creating a `PerpendicularLine` element
+is `build("PerpendicularLine", options: { perpendicularTo, passesThrough, cfg? }): Line` with options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -383,7 +364,7 @@ The `Midpoint` element will create a midpoint between two provided points. Here'
     const A = build("Point", { x: -2, y: -3, cfg: { label: "A" } });
     const B = build("Point", { x: 5, y: 7, cfg: { label: "B" } });
 
-    build("LineSegment", { start: A, end: B });
+    build("Line", { start: A, end: B, cfg: { isSegment: true } });
     build("Midpoint", { start: A, end: B, cfg: { label: "Midpoint" } });
   }}
 </GeometryBoard>
@@ -395,7 +376,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Midpoint` element is `build("Midpoint", options: { start, end, cfg? }): Point` with options listed below.
+The build signature for creating a `Midpoint` element is `build("Midpoint", options: { start, end, cfg? }): Point` with
+options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -426,7 +408,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Incenter` element is `build("Incenter", options: { points, cfg? }): Point` with options listed below.
+The build signature for creating a `Incenter` element is `build("Incenter", options: { points, cfg? }): Point` with
+options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
@@ -459,7 +442,8 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with options listed below.
+The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with
+options listed below.
 
 | Option | Type | Required? | Description |
 | --- | --- | --- | --- |
