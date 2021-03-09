@@ -14,6 +14,7 @@ import { MidpointExample } from "./examples/MidpointExample";
 import { IncenterExample } from "./examples/IncenterExample";
 import { IncircleExample } from "./examples/IncircleExample";
 import { LineIntersectionExample } from "./examples/LineIntersectionExample";
+import { PerpendicularBisectorExample } from "./examples/PerpendicularBisectorExample";
 
 const HomePage: React.FC = () => {
   return (
@@ -94,6 +95,10 @@ const Examples: { title: string; Component: React.FC }[] = [
   {
     title: "LineIntersection",
     Component: LineIntersectionExample,
+  },
+  {
+    title: "PerpendicularBisector",
+    Component: PerpendicularBisectorExample,
   },
 ];
 

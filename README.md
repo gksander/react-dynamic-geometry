@@ -486,6 +486,42 @@ options listed below.
 | --- | --- | --- | --- |
 | `line1` | `Line` | ✅ | First of the two lines. |
 | `line2` | `Line` | ✅ | Second of the two lines. |
+| `cfg` | Same as Point element's `cfg` option. | ❌ | Configuration for display of the `circle` SVG primitive. |
+
+### PerpendicularBisector
+
+The `PerpendicularBisector` element will create the perpendicular bisector for the line segment formed between the two
+provided points. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -3, y: 4, cfg: { label: "A" } });
+    const B = build("Point", { x: 5, y: -2, cfg: { label: "B" } });
+    build("Line", { start: A, end: B, cfg: { isSegment: true } });
+
+    build("PerpendicularBisector", {
+      start: A,
+      end: B,
+      cfg: { stroke: "red" },
+    });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Perpendicular Bisector command](./docs/img/perpendicular-bisector-example.gif)
+
+#### Options
+
+The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with
+options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `start` | `Point` | ✅ | First of the two points that form the line segment. |
+| `end` | `Point` | ✅ | Second of the two points that form the line segment. |
 | `cfg` | Same as Line element's `cfg` option. | ❌ | Configuration for display of the `path` SVG primitive. |
 
 ## Feedback Welcome

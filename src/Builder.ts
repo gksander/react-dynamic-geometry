@@ -11,6 +11,7 @@ import { FunctionGraph } from "./elements/FunctionGraph";
 import { Incenter } from "./elements/Incenter";
 import { Incircle } from "./elements/Incircle";
 import { LineIntersection } from "./elements/LineIntersection";
+import { PerpendicularBisector } from "./elements/PerpendicularBisector";
 
 /**
  * Type of board elements
@@ -28,6 +29,7 @@ export const boardElementTypes = {
   Incenter,
   Incircle,
   LineIntersection,
+  PerpendicularBisector,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 
