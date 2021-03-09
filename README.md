@@ -482,7 +482,7 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [ ] Bisector?
 - [ ] Circumcircle and Circumcenter?
 - [x] Midpoint
-- [ ] Center of Polygon (whatever that's called)
+- [x] Center of Polygon (whatever that's called)
 - [x] Function graph/curve
 - [ ] Parabola
 - [x] Perpendicular

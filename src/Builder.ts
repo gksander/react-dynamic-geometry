@@ -11,6 +11,9 @@ import { ParallelLine } from "./elements/ParallelLine";
 import { FunctionGraph } from "./elements/FunctionGraph";
 import { Incenter } from "./elements/Incenter";
 import { Incircle } from "./elements/Incircle";
+import { Circumcenter } from "./elements/Circumcenter";
+import { Circumcircle } from "./elements/Circumcircle";
+import { LineIntersection } from "./elements/LineIntersection";
 
 /**
  * Type of board elements
@@ -28,6 +31,9 @@ export const boardElementTypes = {
   FunctionGraph,
   Incenter,
   Incircle,
+  Circumcenter,
+  Circumcircle,
+  LineIntersection,
 } as const;
 export type BoardElementConstructors = typeof boardElementTypes;
 

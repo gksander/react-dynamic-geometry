@@ -9,6 +9,14 @@ export class Line implements BoardElement {
   start: Point;
   end: Point;
   cfg: LineConfiguration;
+  slope = atom((get) => {
+    const x1 = get(this.start.x);
+    const y1 = get(this.start.y);
+    const x2 = get(this.end.x);
+    const y2 = get(this.end.y);
+
+    return (y2 - y1) / (x2 - x1);
+  });
 
   constructor({
     start,
@@ -50,9 +58,7 @@ export class Line implements BoardElement {
     this.cfg = cfg;
   }
 
-  Render = ({ index }: { index: number }) => (
-    <LineDisplay line={this} index={index} />
-  );
+  Render = () => <LineDisplay line={this} />;
 }
 
 export type LineConfiguration = Partial<React.SVGProps<SVGLineElement>>;
@@ -61,10 +67,7 @@ type LineDisplayProps = {
   line: Line;
   index?: number;
 };
-export const LineDisplay: React.FC<LineDisplayProps> = ({
-  line,
-  index = 1,
-}) => {
+export const LineDisplay: React.FC<LineDisplayProps> = ({ line }) => {
   const { xMin, xMax, yMin, yMax, transformX, transformY } = useBoardContext();
   const [xi] = useAtom(line.start.x);
   const [yi] = useAtom(line.start.y);

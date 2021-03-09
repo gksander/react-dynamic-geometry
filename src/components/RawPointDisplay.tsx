@@ -20,7 +20,7 @@ export const RawPointDisplay: React.FC<RawPointDisplayProps> = ({
   const cx = transformX(x);
   const cy = transformY(y);
 
-  if (point.cfg.hidden) {
+  if (point.cfg.hidden || isNaN(x) || isNaN(y)) {
     return null;
   }
 
