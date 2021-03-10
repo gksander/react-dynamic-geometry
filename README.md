@@ -237,6 +237,35 @@ options listed below.
 | `vertices` | `Point[]` | ✅ | Array of `Point` elements that define the vertices of the polygon. |
 | `cfg` | `Partial<React.SVGProps<SVGPathElement>>` | ❌ | SVG properties for the `path` primitive element used to draw the Polygon. |
 
+### RegularPolygon
+
+The `RegularPolygon` element will create a regular polygon on the board with a provided number of sides, and having vertices containing the two provided points. Here's an example:
+
+```jsx
+<GeometryBoard>
+  {(build) => {
+    const A = build("Point", { x: -2, y: -5, cfg: { label: "A" } });
+    const B = build("Point", { x: 3, y: -2, cfg: { label: "B" } });
+    
+    build("RegularPolygon", { points: [A, B], numSides: 5 });
+  }}
+</GeometryBoard>
+```
+
+which produces the following:
+
+![Example of Regular Polygon command](./docs/img/regular-polygon-example.gif)
+
+#### Options
+
+The build signature for creating a `RegularPolygon` element is `build("RegularPolygon", options: { points, cfg? }): Polygon` with
+options listed below.
+
+| Option | Type | Required? | Description |
+| --- | --- | --- | --- |
+| `Points` | `[Point, Point]` | ✅ | Two of the vertices the Regular Polygon should have. |
+| `cfg` | Same as Polygon's configuration options | ❌ | SVG properties for the `path` primitive element used to draw the Regular Polygon. |
+
 ### FunctionGraph
 
 The `FunctionGraph` element will create a graph of a function. You must provide the function definition to plot, an
@@ -475,11 +504,11 @@ The `LineIntersection` element will create the interesection point of the two pr
 
 which produces the following:
 
-![Example of Incircle command](./docs/img/lineintersection-example.gif)
+![Example of LineIntersection command](./docs/img/lineintersection-example.gif)
 
 #### Options
 
-The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with
+The build signature for creating a `LineIntersection` element is `build("LineIntersection", options: { line1, line2, cfg? }): Line` with
 options listed below.
 
 | Option | Type | Required? | Description |
@@ -515,7 +544,7 @@ which produces the following:
 
 #### Options
 
-The build signature for creating a `Incircle` element is `build("Incircle", options: { points, cfg? }): Circle` with
+The build signature for creating a `PerpendicularBisector` element is `build("PerpendicularBisector", options: { start, end, cfg? }): Line` with
 options listed below.
 
 | Option | Type | Required? | Description |
@@ -545,6 +574,6 @@ Does this thing interest you? Hit me up! I want to hear your ideas.
 - [ ] Parabola
 - [x] Perpendicular
 - [ ] Reflection across line
-- [ ] Regular Polygon
+- [x] Regular Polygon
 - [ ] Sector
 - [ ] Glider point to curve or object? That seems hard...
