@@ -10,7 +10,9 @@
     "playground": "parcel playground/index.html",
     "prepare": "yarn build",
     "test": "jest --config=jest.config.js",
-    "test:watch": "jest --config=jest.config.js --watch"
+    "test:watch": "jest --config=jest.config.js --watch",
+    "prepublishOnly": "yarn build",
+    "preversion": "yarn test"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
